@@ -164,7 +164,9 @@ All data flows through these Pydantic models:
 1. Browser POSTs the CSV (or hits sample/analyze).
 2. `parse_csv` normalizes 120 rows -> 116 `SaleRecord`s (4 refunded flagged).
 3. `build_report` computes the analytics in a single pass.
-4. `analytics2` computes deep-dive pieces; `insights_extra` renders ~3 extra strings.
+4. `analytics2` computes deep-dive pieces; `insights_extra` renders 4 extra strings
+   for the sample (July-cohort retention warning, Aug-cohort "too early" note, best
+   day Saturday, slowest day Thursday).
 5. `generate_insights` — with no usable key, returns heuristics instantly
    (used_fallback=True); with a key, OpenRouter has a 25s ceiling.
 6. Response round-trips as `AnalyzeResponse`; dashboard renders in milliseconds.

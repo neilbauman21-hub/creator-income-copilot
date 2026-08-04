@@ -11,6 +11,7 @@ Run with: uvicorn main:app --port 8000
 """
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -44,6 +45,34 @@ STORE2_SOURCE_HINT = "gumroad"
 
 MAX_UPLOAD_BYTES = 5 * 1024 * 1024  # 5MB cap
 ALLOWED_SUFFIXES = {".csv", ".txt"}
+
+# Multipart envelopes add boundary/header bytes on top of the file content,
+# so the early Content-Length gate gets a small slack. The EXACT cap is still
+# enforced by the chunked reads below, which count payload bytes only — the
+# slack exists purely so a legitimately ~5MB file isn't rejected because its
+# multipart wrapper pushed the HTTP body a few hundred bytes over.
+_BODY_SLACK_BYTES = 64 * 1024
+_READ_CHUNK_BYTES = 64 * 1024
+
+
+async def _read_stream_capped(stream, cap: int) -> bytes:
+    """Read an async byte stream, rejecting it once it exceeds ``cap`` bytes.
+
+    Reads in chunks and bails as soon as the running total passes the cap, so
+    an oversized body is never fully buffered in memory (defends against
+    memory-exhaustion DoS via huge uploads / JSON bodies).
+    """
+    chunks: list[bytes] = []
+    total = 0
+    async for chunk in stream:
+        total += len(chunk)
+        if total > cap:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Body too large (max {cap} bytes)",
+            )
+        chunks.append(chunk)
+    return b"".join(chunks)
 
 app = FastAPI(
     title="Creator Income Copilot",
@@ -99,6 +128,21 @@ async def _extract_csv(request: Request) -> str:
     """
     content_type = request.headers.get("content-type", "").lower()
 
+    # Early gate on the declared Content-Length: reject a giant body BEFORE
+    # multipart/JSON parsing buffers it. The exact cap is still enforced by
+    # the chunked reads below; the slack only absorbs multipart envelope
+    # overhead. A malformed header is ignored (the chunked reads still cap).
+    declared = request.headers.get("content-length")
+    if declared:
+        try:
+            if int(declared) > MAX_UPLOAD_BYTES + _BODY_SLACK_BYTES:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Request body too large (max {MAX_UPLOAD_BYTES} bytes)",
+                )
+        except ValueError:
+            pass
+
     if "multipart/form-data" in content_type:
         form = await request.form()
         upload = form.get("file")
@@ -120,21 +164,38 @@ async def _extract_csv(request: Request) -> str:
                     f"got {suffix if suffix else '(no extension)'!r}"
                 ),
             )
-        data = await upload.read()
-        if len(data) > MAX_UPLOAD_BYTES:
-            raise HTTPException(
-                status_code=400,
-                detail=(
-                    f"Upload too large: {len(data)} bytes "
-                    f"(max {MAX_UPLOAD_BYTES} bytes)"
-                ),
-            )
-        return data.decode("utf-8", errors="replace")
+        # Chunked read with a running cap: an oversized upload is rejected as
+        # soon as the cap is crossed instead of being buffered in full first.
+        chunks: list[bytes] = []
+        total = 0
+        while True:
+            chunk = await upload.read(_READ_CHUNK_BYTES)
+            if not chunk:
+                break
+            total += len(chunk)
+            if total > MAX_UPLOAD_BYTES:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Upload too large (max {MAX_UPLOAD_BYTES} bytes)",
+                )
+            chunks.append(chunk)
+        return b"".join(chunks).decode("utf-8", errors="replace")
 
-    # Otherwise expect a JSON body with 'csv_text'.
+    # Otherwise expect a JSON body with 'csv_text'. The body is streamed and
+    # capped at MAX_UPLOAD_BYTES before parsing, so a huge JSON body can't be
+    # fully buffered/parsed in memory (same DoS defence as the upload path).
     try:
-        payload = await request.json()
-    except Exception:  # noqa: BLE001 - empty / non-JSON body
+        body = await _read_stream_capped(request.stream(), MAX_UPLOAD_BYTES)
+    except HTTPException:
+        raise
+    except Exception:  # noqa: BLE001 - client disconnect / transport error
+        raise HTTPException(
+            status_code=422,
+            detail="Expected multipart 'file' upload or JSON body with 'csv_text'",
+        ) from None
+    try:
+        payload = json.loads(body)
+    except (ValueError, TypeError):
         raise HTTPException(
             status_code=422,
             detail="Expected multipart 'file' upload or JSON body with 'csv_text'",

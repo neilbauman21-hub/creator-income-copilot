@@ -285,7 +285,7 @@ def price_metrics(records: list[SaleRecord]) -> dict:
         mid = (n + 1) // 2
         first, second = ordered[:mid], ordered[mid:]
         first_aov = sum(r.price * r.quantity for r in first) / len(first)
-        second_aov = sum(r.price * r.quantity for r in second) / len(second)
+        second_aov = sum(r.price * r.quantity for r in second) / len(second) if second else 0.0
         aov_change = _change_pct(second_aov, first_aov)
     else:
         mid = 0

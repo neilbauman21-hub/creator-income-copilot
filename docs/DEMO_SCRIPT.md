@@ -53,7 +53,7 @@ The dashboard has auto-scrolled to the results. Move top-to-bottom, ~5 seconds e
 | What you do | What you say |
 |---|---|
 | Point at the **KPI cards** (revenue, orders, avg order value, repeat rate). | "Sixty days of StudioNova's sales: **$2,543 in revenue, 116 orders, 96 customers** — all net of refunds. These are real numbers from the CSV, not estimates." |
-| Point at the **revenue line chart** (purple) and the **orders bars** (teal). | "Revenue over time — the purple line is money, the teal bars are orders, same day. See the late-June peak? That's a launch spike." |
+| Point at the **revenue line chart** (purple) and the **orders bars** (teal). | "Revenue over time — the purple line is money, the teal bars are orders, same day. See that spike around July 28th? That's a launch day — and the line is still climbing into August." |
 | Point at the **top products list** and its share bars. | "Top products by revenue, with their share of the store: the **Mega Bundle leads at $833** — 33% of everything. And each row has a momentum badge." |
 | Point at the **green "+42.9%"** badge on Content Planner Pro. | "Content Planner Pro is up 43% in the last week — that's the product that's accelerating." |
 

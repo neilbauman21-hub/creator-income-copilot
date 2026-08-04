@@ -374,7 +374,7 @@ function renderTrends(trends) {
 function renderChurn(signals) {
   const el = $('#churnList');
   if (!signals.length) {
-    el.innerHTML = emptyItem('No churn signals detected &mdash; healthy store.');
+    el.innerHTML = emptyItem('No churn signals detected \u2014 healthy store.');
     return;
   }
   el.innerHTML = signals.map((s) => {
@@ -438,14 +438,16 @@ function renderWarnings(warnings) {
 /* ---------- CSV report download ---------- */
 
 // Quote CSV fields that contain commas, quotes or newlines.
-// CSV formula-injection guard: fields starting with =, +, -, @, tab or CR
-// can be executed as formulas / DDE links when the file is opened in
-// Excel/Sheets (product names come from the uploaded CSV, i.e. untrusted).
+// CSV formula-injection guard: fields starting with =, +, -, @ (optionally
+// after leading whitespace / tab / CR) can be executed as formulas / DDE
+// links when the file is opened in Excel/Sheets (product names come from the
+// uploaded CSV, i.e. untrusted). Leading whitespace is covered because some
+// spreadsheet apps trim it before re-parsing the cell.
 // Prefixing a single quote renders them as plain text. Applied BEFORE
 // quoting so the apostrophe lands inside the quoted field.
 const csvEscape = (v) => {
   const s = String(v == null ? '' : v);
-  const safe = /^[=+\-@\t\r]/.test(s) ? `'${s}` : s;
+  const safe = /^\s*[=+\-@]/.test(s) ? `'${s}` : s;
   return /[",\n\r]/.test(safe) ? `"${safe.replace(/"/g, '""')}"` : safe;
 };
 

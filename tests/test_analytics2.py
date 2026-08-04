@@ -287,6 +287,20 @@ def test_price_metrics_price_clusters():
 
 
 # ---------------------------------------------------------------------------
+# single-record edge case (second half is empty — ZeroDivisionError guard)
+# ---------------------------------------------------------------------------
+
+def test_price_metrics_single_record_no_crash():
+    # n=1: mid=1, first=[record], second=[] -> second_aov must not raise.
+    records = [_rec(7, 1, 25.0, product="Solo")]
+    m = price_metrics(records)
+    assert m["orders_first_half"] == 1 and m["orders_second_half"] == 0
+    assert m["aov_first_half"] == 25.0
+    assert m["aov_second_half"] == 0.0
+    assert m["aov_change_pct"] == -100.0  # _change_pct(0, 25) -> -100%
+
+
+# ---------------------------------------------------------------------------
 # empty input safety
 # ---------------------------------------------------------------------------
 
