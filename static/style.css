@@ -649,6 +649,11 @@ main { max-width: 1200px; margin: 0 auto; padding: 34px 28px 20px; }
   -webkit-backdrop-filter: blur(8px);
 }
 
+/* [hidden] must beat display:flex above — the UA rule is lower specificity. */
+.overlay[hidden] {
+  display: none;
+}
+
 .loader-card {
   min-width: 320px;
   max-width: 90vw;
