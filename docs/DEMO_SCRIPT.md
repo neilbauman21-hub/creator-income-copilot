@@ -9,7 +9,7 @@ intelligence, show it never breaks.
 ## 0. Before you hit record
 
 1. Start the server: `uvicorn main:app --port 8000` (from the repo root).
-2. Open `http://localhost:8000` in a clean Chrome window, **1280x720 or wider**, zoom
+2. Open `https://creator-income-copilot-98165680580.us-central1.run.app` in a clean Chrome window, **1280x720 or wider**, zoom
    ~90% so the whole dashboard is visible. Pre-load the page so fonts/CDN are cached.
 3. **Do NOT configure OPENROUTER_API_KEY.** The demo runs keyless on the heuristic
    engine — that is a feature, not a fallback (it proves the app works anywhere).
@@ -153,7 +153,7 @@ store, 80 orders, 5 products, $1,203 net revenue). The frontend demo uses store 
 you can show diversity via the API or a bookmarklet:
 
 ```
-curl -X POST "http://localhost:8000/api/sample/analyze?store=2"
+curl -X POST "https://creator-income-copilot-98165680580.us-central1.run.app/api/sample/analyze?store=2"
 ```
 
 Story beat: "a different store, a different platform — same pipeline." Skip if you're
