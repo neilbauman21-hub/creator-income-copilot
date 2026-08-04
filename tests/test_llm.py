@@ -221,7 +221,7 @@ def test_llm_success_uses_llm_output(monkeypatch):
     assert insights.next_product.name == "Resume Template"
 
     # Request shape per SPEC: right endpoint default model, json_object mode.
-    assert captured["json"]["model"] == "google/gemini-2.0-flash-001"
+    assert captured["json"]["model"] == "google/gemini-2.5-flash-lite"
     assert captured["json"]["response_format"] == {"type": "json_object"}
     assert captured["timeout"] == 25.0
     assert captured["headers"]["Authorization"] == "Bearer test-key"

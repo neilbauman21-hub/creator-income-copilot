@@ -161,14 +161,16 @@ def heuristic_insights(report: AnalyticsReport) -> LLMInsights:
     )
 
 
-def _call_openrouter(report: AnalyticsReport, api_key: str) -> LLMInsights:
-    """Call OpenRouter chat completions and parse an LLMInsights response.
+def _call_provider(
+    report: AnalyticsReport, url: str, model: str, api_key: str
+) -> LLMInsights:
+    """Call an OpenAI-compatible chat completions endpoint and parse LLMInsights.
 
     Raises on any transport/status/parse problem; the caller converts every
-    failure into the heuristic fallback.
+    failure into the next fallback or the heuristic.
     """
     payload = {
-        "model": os.getenv("OPENROUTER_MODEL", _DEFAULT_MODEL),
+        "model": model,
         "response_format": {"type": "json_object"},
         "messages": [
             {"role": "system", "content": _LLM_SYSTEM_PROMPT},
@@ -185,12 +187,7 @@ def _call_openrouter(report: AnalyticsReport, api_key: str) -> LLMInsights:
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
     }
-    response = httpx.post(
-        _OPENROUTER_URL,
-        json=payload,
-        headers=headers,
-        timeout=_TIMEOUT_SECONDS,
-    )
+    response = httpx.post(url, json=payload, headers=headers, timeout=_TIMEOUT_SECONDS)
     response.raise_for_status()
     body = response.json()
     content = body["choices"][0]["message"]["content"]
@@ -200,27 +197,64 @@ def _call_openrouter(report: AnalyticsReport, api_key: str) -> LLMInsights:
     return LLMInsights.model_validate(data)
 
 
+def _call_openrouter(report: AnalyticsReport, api_key: str) -> LLMInsights:
+    """Primary provider: OpenRouter (per SPEC)."""
+    return _call_provider(
+        report,
+        _OPENROUTER_URL,
+        os.getenv("OPENROUTER_MODEL", _DEFAULT_MODEL),
+        api_key,
+    )
+
+
+def _call_fallback_provider(report: AnalyticsReport) -> LLMInsights:
+    """Secondary provider: opencode-go ZEN endpoint (works without OpenRouter credits).
+
+    Reads LLM_FALLBACK_BASE_URL / LLM_FALLBACK_API_KEY / LLM_FALLBACK_MODEL
+    from the environment. Raises if not configured — caller falls back further.
+    """
+    base = os.getenv("LLM_FALLBACK_BASE_URL")
+    key = os.getenv("LLM_FALLBACK_API_KEY")
+    model = os.getenv("LLM_FALLBACK_MODEL", "deepseek-v4-flash")
+    if not base or not key:
+        raise ValueError("fallback LLM provider not configured")
+    url = base.rstrip("/") + "/chat/completions"
+    return _call_provider(report, url, model, key)
+
+
 def generate_insights(
     report: AnalyticsReport, api_key: str | None
 ) -> LLMInsights:
     """Generate insights for a report, degrading gracefully to heuristics.
 
-    With no ``api_key`` the heuristic fallback is returned immediately
-    (``used_fallback=True``). With a key, OpenRouter is called; ANY failure —
-    network error, non-2xx status, timeout, malformed JSON, schema mismatch —
-    logs a warning and returns the heuristic fallback. Never raises.
+    Provider chain: OpenRouter (if api_key) → ZEN fallback (if configured) →
+    deterministic heuristic. Every failure logs a warning and moves down the
+    chain. Never raises.
     """
     if not api_key:
+        # No key = offline/demo mode. Pure heuristic, never touch the network.
         return heuristic_insights(report)
 
     load_dotenv()
+
     try:
         return _call_openrouter(report, api_key)
     except Exception as exc:  # noqa: BLE001 - every failure degrades gracefully
         logger.warning(
-            "OpenRouter insight call failed (%s: %s) — using heuristic "
+            "OpenRouter insight call failed (%s: %s) — trying fallback "
+            "provider",
+            type(exc).__name__,
+            exc,
+        )
+
+    try:
+        return _call_fallback_provider(report)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning(
+            "Fallback LLM provider failed (%s: %s) — using heuristic "
             "fallback",
             type(exc).__name__,
             exc,
         )
-        return heuristic_insights(report)
+
+    return heuristic_insights(report)

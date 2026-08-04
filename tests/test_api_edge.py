@@ -235,14 +235,22 @@ def test_monkeypatched_generate_insights_propagates_used_fallback(
 def test_llm_failure_forces_real_fallback_with_used_fallback(
     monkeypatch,
 ) -> None:
-    """Patch the OpenRouter call to raise: generate_insights must degrade to
-    the heuristic path and used_fallback=True must reach the response."""
+    """Patch both LLM providers to raise: generate_insights must degrade to
+    the heuristic path and used_fallback=True must reach the response.
+    (Overrides conftest's offline mock so the REAL chain is exercised.)
+    """
 
     def _boom(report, api_key):  # noqa: ARG001
         raise RuntimeError("simulated OpenRouter outage")
 
-    monkeypatch.setattr("core.llm._call_openrouter", _boom)
-    monkeypatch.setenv("OPENROUTER_API_KEY", "sk-test-fake-key")
+    import core.llm
+    import core.report
+
+    monkeypatch.setattr(core.llm, "_call_openrouter", _boom)
+    monkeypatch.setattr(core.llm, "_call_fallback_provider", _boom)
+    monkeypatch.setenv("OPENROUTER_API_KEY", "***")
+    # Restore the real generate_insights (conftest replaced it with a fake).
+    monkeypatch.setattr(core.report, "generate_insights", core.llm.generate_insights)
 
     resp = client.post("/api/sample/analyze")
     assert resp.status_code == 200, resp.text
