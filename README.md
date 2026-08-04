@@ -132,6 +132,10 @@ never logged.
 
 ## Deployment
 
+- **Live demo** — https://creator-income-copilot-98165680580.us-central1.run.app
+  (Google Cloud Run, free tier, always-on URL). AI insights use the provider
+  chain: OpenRouter → Vertex AI (Gemini) → ZEN fallback → heuristic, so the
+  demo works even with zero LLM credits.
 - **Docker** — `docker build -f deploy/Dockerfile -t creator-income-copilot .`
   then `docker run -p 8000:8000 --env-file .env creator-income-copilot`.
   The container listens on `$PORT` (default 8000), so it works on Render,
@@ -140,6 +144,29 @@ never logged.
   ("New > Blueprint"). It builds with `pip install -r requirements.txt` and
   starts with `uvicorn main:app --host 0.0.0.0 --port $PORT`. Set
   `OPENROUTER_API_KEY` in the service environment when prompted (optional).
+
+### Cloud Run (this project)
+
+```bash
+# One-time: enable APIs
+gcloud services enable run.googleapis.com artifactregistry.googleapis.com \
+  cloudbuild.googleapis.com aiplatform.googleapis.com
+
+# Grant the runtime service account Vertex AI access (for real AI insights)
+SA=$(gcloud run services describe creator-income-copilot --region us-central1 \
+  --format='value(spec.template.spec.serviceAccountName)')
+gcloud projects add-iam-policy-binding $GCP_PROJECT \
+  --member="serviceAccount:$SA" --role="roles/aiplatform.user" --quiet
+
+# Deploy (builds from source, sets env vars)
+gcloud run deploy creator-income-copilot --source . --region us-central1 \
+  --allow-unauthenticated --memory 512Mi --max-instances 1 \
+  --set-env-vars "OPENROUTER_API_KEY=$OPENROUTER_API_KEY,OPENROUTER_MODEL=$OPENROUTER_MODEL"
+```
+
+Vertex AI env overrides: `VERTEX_MODEL` (default `gemini-2.5-flash`),
+`VERTEX_REGION` (default `us-central1`). The project is auto-detected from
+`GOOGLE_CLOUD_PROJECT` (set by Cloud Run).
 
 ## Project layout
 
