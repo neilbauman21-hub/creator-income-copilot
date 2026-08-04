@@ -22,6 +22,14 @@ import os
 import httpx
 from dotenv import load_dotenv
 
+try:  # optional dep — only needed for the Vertex AI provider path
+    from google.auth import default as _gcp_default
+    from google.auth.transport.requests import Request as _GCPRequest
+
+    _HAS_GCP_AUTH = True
+except Exception:  # noqa: BLE001 — graceful degradation without google-auth
+    _HAS_GCP_AUTH = False
+
 from core.models import AnalyticsReport, LLMInsights
 from core.promo import build_promo_email
 from core.recommender import recommend_next_product
@@ -222,6 +230,72 @@ def _call_fallback_provider(report: AnalyticsReport) -> LLMInsights:
     return _call_provider(report, url, model, key)
 
 
+_VERTEX_DEFAULT_MODEL = "gemini-2.5-flash"
+_VERTEX_REGION = "us-central1"
+
+
+def _call_vertex_provider(report: AnalyticsReport) -> LLMInsights:
+    """Tertiary provider: Google Vertex AI (Gemini), using ADC credentials.
+
+    Works on Cloud Run (runtime service account) and locally (gcloud auth).
+    Project comes from GOOGLE_CLOUD_PROJECT env (set automatically on
+    Cloud Run) or GCP_PROJECT; region/model from env overrides with sane
+    defaults. Raises on any failure — caller falls back further.
+    """
+    if not _HAS_GCP_AUTH:
+        raise ValueError("google-auth not installed")
+    project = os.getenv("GOOGLE_CLOUD_PROJECT") or os.getenv("GCP_PROJECT")
+    if not project:
+        raise ValueError("no GCP project detected")
+    model = os.getenv("VERTEX_MODEL", _VERTEX_DEFAULT_MODEL)
+    region = os.getenv("VERTEX_REGION", _VERTEX_REGION)
+    url = (
+        f"https://{region}-aiplatform.googleapis.com/v1/projects/{project}/"
+        f"locations/{region}/publishers/google/models/{model}:generateContent"
+    )
+    credentials, _ = _gcp_default(
+        scopes=["https://www.googleapis.com/auth/cloud-platform"]
+    )
+    credentials.refresh(_GCPRequest())
+    payload = {
+        "system_instruction": {
+            "parts": [{"text": _LLM_SYSTEM_PROMPT}]
+        },
+        "contents": [
+            {
+                "role": "user",
+                "parts": [
+                    {
+                        "text": (
+                            "Analytics report JSON:\n"
+                            f"{report.model_dump_json(indent=2)}"
+                        )
+                    }
+                ],
+            }
+        ],
+        "generationConfig": {
+            "responseMimeType": "application/json",
+            "temperature": 0.4,
+        },
+    }
+    headers = {
+        "Authorization": f"Bearer {credentials.token}",
+        "Content-Type": "application/json",
+    }
+    response = httpx.post(url, json=payload, headers=headers, timeout=_TIMEOUT_SECONDS)
+    response.raise_for_status()
+    body = response.json()
+    try:
+        text = body["candidates"][0]["content"]["parts"][0]["text"]
+    except (KeyError, IndexError, TypeError) as exc:
+        raise ValueError(f"unexpected Vertex response: {str(body)[:200]}") from exc
+    data = json.loads(text)  # raises json.JSONDecodeError on bad output
+    if not isinstance(data, dict):
+        raise ValueError("LLM response is not a JSON object")
+    return LLMInsights.model_validate(data)
+
+
 def generate_insights(
     report: AnalyticsReport, api_key: str | None
 ) -> LLMInsights:
@@ -241,8 +315,16 @@ def generate_insights(
         return _call_openrouter(report, api_key)
     except Exception as exc:  # noqa: BLE001 - every failure degrades gracefully
         logger.warning(
-            "OpenRouter insight call failed (%s: %s) — trying fallback "
-            "provider",
+            "OpenRouter insight call failed (%s: %s) — trying Vertex AI",
+            type(exc).__name__,
+            exc,
+        )
+
+    try:
+        return _call_vertex_provider(report)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning(
+            "Vertex AI insight call failed (%s: %s) — trying fallback provider",
             type(exc).__name__,
             exc,
         )

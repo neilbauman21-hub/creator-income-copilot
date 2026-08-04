@@ -9,3 +9,5 @@ pydantic==2.13.4
 python-multipart==0.0.32
 pytest==9.1.1
 httpx==0.28.1
+google-auth==2.38.0
+requests==2.32.3
