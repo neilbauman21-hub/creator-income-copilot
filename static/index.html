@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/style.css?v=3">
 </head>
 <body>
 
@@ -122,6 +122,16 @@
         </div>
       </div>
 
+      <!-- Buyer questions (demand signals from order notes) -->
+      <div id="section-questions" class="card" hidden>
+        <div class="card-head">
+          <h3>What buyers are asking</h3>
+          <span class="chip chip-neutral">demand signals</span>
+        </div>
+        <ul id="questionsList" class="questions-list"></ul>
+        <p class="questions-hint">Questions left in order notes &mdash; each one is a product idea waiting to be built.</p>
+      </div>
+
       <!-- AI panel -->
       <div id="section-ai" class="ai-panel">
         <div class="ai-panel-head">
@@ -129,7 +139,10 @@
             <span class="ai-badge" aria-hidden="true">&#10022;</span>
             <h2>AI Copilot</h2>
           </div>
-          <span id="fallbackChip" class="chip chip-warn" hidden title="No LLM API key configured — heuristic insights used">heuristic mode</span>
+          <div class="ai-head-chips">
+            <span id="aiUpgradeChip" class="chip chip-accent" hidden><span class="chip-dot" aria-hidden="true"></span>AI thinking&hellip;</span>
+            <span id="fallbackChip" class="chip chip-warn" hidden title="No LLM API key configured — heuristic insights used">heuristic mode</span>
+          </div>
         </div>
 
         <div class="grid-2">
@@ -195,6 +208,6 @@
 
   <!-- Chart.js 4.x via CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="/static/app.js"></script>
+  <script src="/static/app.js?v=3"></script>
 </body>
 </html>

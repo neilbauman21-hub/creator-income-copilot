@@ -22,7 +22,7 @@ from dotenv import load_dotenv
 
 from core.analytics import build_report
 from core.insights_extra import deep_dive_insights
-from core.llm import generate_insights
+from core.llm import generate_insights, heuristic_insights
 from core.models import AnalyzeResponse, SaleRecord
 
 load_dotenv()
@@ -59,7 +59,8 @@ def _compute_extra(records: list[SaleRecord]) -> dict:
 
 
 def build_analyze_response(
-    records: list[SaleRecord], warnings: list[str]
+    records: list[SaleRecord],
+    warnings: list[str],
 ) -> AnalyzeResponse:
     """Run the full pipeline over parsed records and assemble the response.
 
@@ -72,6 +73,22 @@ def build_analyze_response(
     report = build_report(records)
     deep_dive = deep_dive_insights(report, _compute_extra(records))
     insights = generate_insights(report, os.getenv("OPENROUTER_API_KEY"))
+    if deep_dive:
+        insights.insights = [*deep_dive, *insights.insights]
+    return AnalyzeResponse(analytics=report, insights=insights, warnings=warnings)
+
+
+def build_fast_response(records: list[SaleRecord], warnings: list[str]) -> AnalyzeResponse:
+    """Instant path: analytics + heuristic insights, NO LLM call.
+
+    Returns the same AnalyzeResponse shape as ``build_analyze_response`` so
+    the frontend renders identically, but in a few milliseconds instead of
+    seconds. The frontend then calls ``POST /api/upgrade`` with the same CSV
+    to swap the heuristic insights for full LLM insights in place.
+    """
+    report = build_report(records)
+    deep_dive = deep_dive_insights(report, _compute_extra(records))
+    insights = heuristic_insights(report)
     if deep_dive:
         insights.insights = [*deep_dive, *insights.insights]
     return AnalyzeResponse(analytics=report, insights=insights, warnings=warnings)

@@ -21,7 +21,7 @@ from fastapi.responses import FileResponse, HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
 
 from core.parser import parse_csv
-from core.report import build_analyze_response
+from core.report import build_analyze_response, build_fast_response
 from core.models import AnalyzeResponse
 
 load_dotenv()
@@ -224,10 +224,17 @@ async def _extract_csv(request: Request) -> str:
     return csv_text
 
 
-def _analyze_csv_text(csv_text: str, source_hint: str | None = None) -> AnalyzeResponse:
+def _analyze_csv_text(
+    csv_text: str,
+    source_hint: str | None = None,
+    fast: bool = False,
+) -> AnalyzeResponse:
     """Shared pipeline: parse -> report -> insights. 400 on unparseable CSV.
 
     source_hint is forwarded to parse_csv (None keeps auto-detection).
+    ``fast`` skips the LLM call entirely (heuristic insights only) so the
+    dashboard renders in milliseconds — the frontend then upgrades in place
+    via POST /api/upgrade, which calls this with fast=False.
     """
     records, warnings = parse_csv(csv_text, source_hint=source_hint)
     if not records:
@@ -236,6 +243,8 @@ def _analyze_csv_text(csv_text: str, source_hint: str | None = None) -> AnalyzeR
             status_code=400,
             detail=f"Could not parse CSV: {detail}",
         )
+    if fast:
+        return build_fast_response(records, warnings)
     return build_analyze_response(records, warnings)
 
 
@@ -249,10 +258,15 @@ async def index() -> HTMLResponse:
 
 
 @app.post("/api/analyze", response_model=AnalyzeResponse)
-async def analyze(request: Request) -> AnalyzeResponse:
-    """Analyze an uploaded sales CSV (multipart 'file' or JSON 'csv_text')."""
+async def analyze(request: Request, fast: bool = False) -> AnalyzeResponse:
+    """Analyze an uploaded sales CSV (multipart 'file' or JSON 'csv_text').
+
+    ``fast=1`` skips the LLM call and returns the deterministic heuristic
+    insights immediately (the frontend then upgrades in place via
+    ``POST /api/upgrade``).
+    """
     csv_text = await _extract_csv(request)
-    return _analyze_csv_text(csv_text)
+    return _analyze_csv_text(csv_text, fast=fast)
 
 
 def _resolve_sample(store: int) -> Path:
@@ -284,15 +298,29 @@ async def sample_csv(store: int = 1) -> FileResponse:
 
 
 @app.post("/api/sample/analyze", response_model=AnalyzeResponse)
-async def sample_analyze(store: int = 1) -> AnalyzeResponse:
+async def sample_analyze(store: int = 1, fast: bool = False) -> AnalyzeResponse:
     """Run a built-in sample through the full pipeline.
 
     store=1 -> Payhip sample (default); store=2 -> Gumroad-style sample,
     parsed with the built-in gumroad engine (see STORE2_SOURCE_HINT).
+    ``fast=1`` skips the LLM call (heuristic insights only).
     """
     path = _resolve_sample(store)
     if not path.exists():
         raise HTTPException(status_code=404, detail="Sample CSV not found")
     csv_text = path.read_text(encoding="utf-8")
     hint = STORE2_SOURCE_HINT if store == 2 else None
-    return _analyze_csv_text(csv_text, source_hint=hint)
+    return _analyze_csv_text(csv_text, source_hint=hint, fast=fast)
+
+
+@app.post("/api/upgrade", response_model=AnalyzeResponse)
+async def upgrade(request: Request) -> AnalyzeResponse:
+    """Regenerate insights with the full LLM chain for an already-parsed CSV.
+
+    Accepts the same body shapes as ``/api/analyze`` (multipart 'file' or
+    JSON 'csv_text') but skips straight to the AI insight pass — used by the
+    frontend to upgrade a fast-rendered report in place. Returns the same
+    AnalyzeResponse shape so the dashboard can just re-render.
+    """
+    csv_text = await _extract_csv(request)
+    return _analyze_csv_text(csv_text)

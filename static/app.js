@@ -125,10 +125,15 @@ function showToast(msg, kind = 'error') {
 
 /* ---------- data fetching ---------- */
 
+let upgradeOptions = null; // last request options, reused for the in-place AI upgrade
+
 async function analyze(url, options) {
   showOverlay();
   try {
-    const res = await fetch(url, options);
+    // fast=1: analytics + heuristic insights instantly; the LLM pass runs
+    // afterwards via /api/upgrade and swaps the AI panel in place.
+    const sep = url.includes('?') ? '&' : '?';
+    const res = await fetch(`${url}${sep}fast=1`, options);
     if (!res.ok) {
       let detail = `Request failed (HTTP ${res.status})`;
       try {
@@ -138,8 +143,10 @@ async function analyze(url, options) {
       throw new Error(detail);
     }
     const data = await res.json();
+    upgradeOptions = options;
     render(data);
     hideOverlay();
+    upgradeToAI();
   } catch (err) {
     hideOverlay();
     showToast(err && err.message ? err.message : 'Something went wrong. Please try again.');
@@ -153,6 +160,27 @@ async function analyze(url, options) {
     panelError($('#insightsList'), retry);
     $('#btnDownloadCsv').disabled = true;
     $('#results').hidden = false;
+  }
+}
+
+// Swap heuristic insights for full LLM insights without reloading the page.
+// The request options are identical to the initial analyze call (minus the
+// fast=1 query param) — the server re-parses the CSV and runs the whole LLM
+// provider chain.
+async function upgradeToAI() {
+  if (!upgradeOptions) return;
+  const aiChip = $('#aiUpgradeChip');
+  aiChip.hidden = false; // "AI thinking…" indicator in the panel head
+  try {
+    const res = await fetch('/api/upgrade', upgradeOptions);
+    if (!res.ok) throw new Error(`upgrade failed (HTTP ${res.status})`);
+    const data = await res.json();
+    lastData = data; // keep the CSV download consistent with the AI report
+    renderInsights(data.insights || {});
+  } catch (_) {
+    // keep the heuristic insights — they're already on screen and correct
+  } finally {
+    aiChip.hidden = true;
   }
 }
 
@@ -170,8 +198,19 @@ function handleFile(file) {
   analyze('/api/analyze', { method: 'POST', body: fd });
 }
 
-function loadSample() {
-  analyze('/api/sample/analyze', { method: 'POST' });
+async function loadSample() {
+  // Fetch the sample CSV text so the same body can be replayed for the
+  // in-place AI upgrade (upgradeBody must be set for upgradeToAI to run).
+  try {
+    const csv = await (await fetch('/api/sample')).text();
+    analyze('/api/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ csv_text: csv }),
+    });
+  } catch (_) {
+    showToast('Could not load the sample dataset. Try uploading a CSV instead.');
+  }
 }
 
 /* ---------- renderers ---------- */
@@ -194,6 +233,7 @@ function render(data) {
   try { renderTopProducts(a.top_products || []); } catch (_) { panelError($('#topProducts'), () => renderTopProducts(a.top_products || [])); }
   try { renderTrends(a.trends || []); } catch (_) { panelError($('#trendsList'), () => renderTrends(a.trends || [])); }
   try { renderChurn(a.churn_signals || []); } catch (_) { panelError($('#churnList'), () => renderChurn(a.churn_signals || [])); }
+  try { renderQuestions(a.questions || []); } catch (_) { /* hides itself when empty */ }
   try { renderInsights(ins); } catch (_) { panelError($('#insightsList'), () => renderInsights(ins)); }
   try { renderWarnings(data.warnings || []); } catch (_) { /* warnings card hides itself when empty */ }
 
@@ -391,6 +431,15 @@ function renderChurn(signals) {
         ${s.description ? `<p class="signal-desc">${esc(s.description)}</p>` : ''}
       </li>`;
   }).join('');
+}
+
+function renderQuestions(questions) {
+  const card = $('#section-questions');
+  const list = $('#questionsList');
+  const qs = (questions || []).filter(Boolean).slice(0, 8);
+  if (!qs.length) { card.hidden = true; list.innerHTML = ''; return; }
+  card.hidden = false;
+  list.innerHTML = qs.map((q) => `<li>${esc(q)}</li>`).join('');
 }
 
 function renderInsights(ins) {
