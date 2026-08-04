@@ -250,8 +250,8 @@ function renderChart(a) {
   const orders = days.map((d) => num(d.orders));
 
   const grad = ctx.createLinearGradient(0, 0, 0, 300);
-  grad.addColorStop(0, 'rgba(139, 123, 255, 0.35)');
-  grad.addColorStop(1, 'rgba(139, 123, 255, 0)');
+  grad.addColorStop(0, 'rgba(79, 70, 229, 0.12)');
+  grad.addColorStop(1, 'rgba(79, 70, 229, 0)');
 
   chart = new Chart(ctx, {
     type: 'line',
@@ -261,23 +261,23 @@ function renderChart(a) {
         {
           label: 'Revenue',
           data: revenue,
-          borderColor: '#8b7bff',
+          borderColor: '#4f46e5',
           backgroundColor: grad,
           fill: true,
-          tension: 0.4,
-          borderWidth: 2.5,
+          tension: 0.35,
+          borderWidth: 2,
           pointRadius: 0,
-          pointHoverRadius: 5,
-          pointBackgroundColor: '#8b7bff',
-          pointBorderColor: '#8b7bff',
+          pointHoverRadius: 4,
+          pointBackgroundColor: '#4f46e5',
+          pointBorderColor: '#4f46e5',
         },
         {
           label: 'Orders',
           data: orders,
           type: 'bar',
           yAxisID: 'yOrders',
-          backgroundColor: 'rgba(76, 201, 240, 0.30)',
-          hoverBackgroundColor: 'rgba(76, 201, 240, 0.5)',
+          backgroundColor: 'rgba(156, 163, 175, 0.35)',
+          hoverBackgroundColor: 'rgba(156, 163, 175, 0.55)',
           borderRadius: 3,
           barPercentage: 0.55,
           categoryPercentage: 0.7,
@@ -290,15 +290,16 @@ function renderChart(a) {
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: {
-          labels: { color: '#8b93a7', usePointStyle: true, pointStyle: 'circle', boxWidth: 8, font: { family: FONT, size: 12 } },
+          labels: { color: '#6b7280', usePointStyle: true, pointStyle: 'circle', boxWidth: 7, font: { family: FONT, size: 12 } },
         },
         tooltip: {
-          backgroundColor: '#1a2030',
-          borderColor: 'rgba(255,255,255,0.08)',
+          backgroundColor: '#111827',
+          borderColor: 'rgba(17, 24, 39, 0.1)',
           borderWidth: 1,
-          padding: 12,
-          titleColor: '#e9edf5',
-          bodyColor: '#c2c9d9',
+          padding: 10,
+          titleColor: '#f9fafb',
+          bodyColor: '#e5e7eb',
+          cornerRadius: 8,
           callbacks: {
             label: (c) => (c.dataset.label === 'Revenue'
               ? ` ${c.dataset.label}: ${fmtMoney(c.parsed.y)}`
@@ -308,18 +309,18 @@ function renderChart(a) {
       },
       scales: {
         x: {
-          grid: { color: 'rgba(255,255,255,0.04)' },
-          ticks: { color: '#8b93a7', maxTicksLimit: 10, font: { family: FONT, size: 11 } },
+          grid: { color: 'rgba(17, 24, 39, 0.05)' },
+          ticks: { color: '#9ca3af', maxTicksLimit: 10, font: { family: FONT, size: 11 } },
         },
         y: {
           position: 'left',
-          grid: { color: 'rgba(255,255,255,0.06)' },
-          ticks: { color: '#8b93a7', callback: (v) => fmtMoneyCompact(v), font: { family: FONT, size: 11 } },
+          grid: { color: 'rgba(17, 24, 39, 0.06)' },
+          ticks: { color: '#9ca3af', callback: (v) => fmtMoneyCompact(v), font: { family: FONT, size: 11 } },
         },
         yOrders: {
           position: 'right',
           grid: { drawOnChartArea: false },
-          ticks: { color: '#5b6478', precision: 0, font: { family: FONT, size: 11 } },
+          ticks: { color: '#9ca3af', precision: 0, font: { family: FONT, size: 11 } },
         },
       },
     },
