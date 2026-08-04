@@ -1,0 +1,336 @@
+
+╭──────────── Hermes Agent v0.12.0 (2026.4.30) · upstream 54e78cad ────────────╮
+│                                     Available Tools                          │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    browser-cdp: browser_cdp,                │
+│   ⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀    browser_dialog                           │
+│   ⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀    file: patch, read_file, search_files,    │
+│   ⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀    write_file                               │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    hermes-yuanbao: yb_query_group_info,     │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    homeassistant: ha_call_service,          │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ha_get_state, ...                        │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    image_gen: image_generate                │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    kanban: kanban_block, kanban_comment,    │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠑⢶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    rl: rl_check_status, rl_edit_config,     │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⢰⡆⠈⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠈⣡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    spotify: spotify_albums,                 │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    spotify_devices, ...                     │
+│                                     (and 1 more toolsets...)                 │
+│  deepseek-v4-flash · Nous Research                                           │
+│     /Users/neilthepineapplegoat     MCP Servers                              │
+│   Session: 20260804_005239_19b7e0   neo (stdio) — 21 tool(s)                 │
+│                                     figma (stdio) — 6 tool(s)                │
+│                                     filesystem (stdio) — 18 tool(s)          │
+│                                     memory (stdio) — 13 tool(s)              │
+│                                     sequential-thinking (stdio) — 5 tool(s)  │
+│                                                                              │
+│                                     Available Skills                         │
+│                                     apple: apple-notes, apple-reminders,     │
+│                                     findmy, imessage                         │
+│                                     autonomous-ai-agents: claude-code,       │
+│                                     codex, command-code, hermes-agent,...    │
+│                                     creative: architecture-diagram,          │
+│                                     ascii-art, ascii-video, b...             │
+│                                     data-science: jupyter-live-kernel        │
+│                                     devops: kanban-orchestrator,             │
+│                                     kanban-worker, webhook-sub...            │
+│                                     email: himalaya                          │
+│                                     gaming: minecraft-modpack-server,        │
+│                                     pokemon-player                           │
+│                                     general: ai-seo, cold-email,             │
+│                                     copywriting, data-visualiza...           │
+│                                     github: codebase-inspection,             │
+│                                     github-auth, github-code-r...            │
+│                                     marketing: website-promotion             │
+│                                     mcp: mcp-server-from-github, native-mcp  │
+│                                     media: gif-search, heartmula, songsee,   │
+│                                     spotify, youtub...                       │
+│                                     mlops: audiocraft-audio-generation,      │
+│                                     axolotl, dspy, eva...                    │
+│                                     note-taking: obsidian                    │
+│                                     openclaw-imports: find-skills,           │
+│                                     remotion-best-practices                  │
+│                                     productivity: airtable,                  │
+│                                     digital-product-selling,                 │
+│                                     google-works...                          │
+│                                     red-teaming: godmode,                    │
+│                                     kali-pi-bugbounty-recon                  │
+│                                     research: arxiv, blogwatcher, dig,       │
+│                                     duckduckgo-search, llm...                │
+│                                     security: bug-bounty-recon               │
+│                                     smart-home: openhue                      │
+│                                     social-media: xurl                       │
+│                                     software-development:                    │
+│                                     apify-actor-development,                 │
+│                                     debugging-hermes-tui-c...                │
+│                                                                              │
+│                                     6 tools · 116 skills · 5 MCP servers ·   │
+│                                     /help for commands                       │
+│                                     ⚠ 205 commits behind — run hermes        │
+│                                     update to update                         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Query: You are a coding subagent building part of the 'Creator Income Copilot' 
+hackathon project at /Users/neilthepineapplegoat/creator-income-copilot.
+FIRST: read /Users/neilthepineapplegoat/creator-income-copilot/SPEC.md, 
+/Users/neilthepineapplegoat/creator-income-copilot/core/models.py, 
+/Users/neilthepineapplegoat/creator-income-copilot/core/promo.py and 
+/Users/neilthepineapplegoat/creator-income-copilot/core/recommender.py (they 
+ALREADY exist — read them, do NOT modify).
+YOUR TASK: write /Users/neilthepineapplegoat/creator-income-copilot/core/llm.py 
+exactly per the SPEC 'core/llm.py' section. Implement generate_insights(report: 
+AnalyticsReport, api_key: str | None) -> LLMInsights and 
+heuristic_insights(report) -> LLMInsights (exported). No api_key → immediately 
+return heuristic fallback (3-6 insights from report numbers, promo via 
+core.promo.build_promo_email, next product via 
+core.recommender.recommend_next_product, used_fallback=True), NEVER raise. With 
+key → POST https://openrouter.ai/api/v1/chat/completions, model from env 
+OPENROUTER_MODEL (default google/gemini-2.0-flash-001), response_format 
+json_object, instruct EXACTLY LLMInsights schema, 25s timeout (httpx), any 
+exception/invalid JSON → heuristic fallback. Use python-dotenv load_dotenv(). 
+Also write /Users/neilthepineapplegoat/creator-income-copilot/tests/test_llm.py:
+no-key fallback valid with used_fallback=True; heuristic on constructed report 
+with real numbers; empty report no raise. NEVER call network in tests.
+VERIFY: cd /Users/neilthepineapplegoat/creator-income-copilot && 
+.venv/bin/python -m pytest tests/test_llm.py -q — iterate until green.
+Do NOT modify core/models.py, core/promo.py, core/recommender.py. Report: files 
+written + final pytest output.
+Initializing agent...
+────────────────────────────────────────
+
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/SPEC.md  4.4s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/models.py  4.4s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/promo.py  4.3s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/recommender.py  4.4s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Read everything. Spec is clear: core/llm.py with generate_insights + heuristic_insights, and tests/test_llm.py. Let me check the project state first.
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🔎 preparing search_files…
+  ┊ 💻 preparing terminal…
+  ┊ 🔎 find      *  0.9s
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && ls -la && ls -la core tests 2>/dev/null; .venv/bin/python -c "import httpx, dotenv, pydantic; print('deps ok')" 2>&1 | tail -2  0.6s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Deps are available (httpx, dotenv, pydantic). Let me peek at an existing test for style consistency, then write both files.
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📖 preparing read_file…
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/tests/test_analytics.py  1.0s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Style clear. Writing both files now.
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ ✍️ preparing write_file…
+  ┊ ✍️  write     /Users/neilthepineapplegoat/creator-income-copilot/core/llm.py  0.8s
+  ┊ review diff
+a/core/llm.py → b/core/llm.py
+@@ -0,0 +1,226 @@
++"""LLM insight generation for Creator Income Copilot.
++
++Wave 1 (agent C). Two paths:
++
++- ``generate_insights(report, api_key)`` — the public entry point. With no
++  API key it returns the deterministic heuristic fallback immediately. With
++  a key it calls the OpenRouter chat completions API and falls back to the
++  heuristic on ANY failure (exception, bad status, invalid JSON).
++- ``heuristic_insights(report)`` — rule-based insights built from the report
++  numbers, the promo email from ``core.promo.build_promo_email`` and the
++  next-product recommendation from ``core.recommender.recommend_next_product``.
++
++The demo MUST work keyless, so the heuristic path is the safety net and is
++exercised by ``tests/test_llm.py`` (which never touches the network).
++"""
++from __future__ import annotations
++
++import json
++import logging
++import os
++
++import httpx
++from dotenv import load_dotenv
++
++from core.models import AnalyticsReport, LLMInsights
++from core.promo import build_promo_email
++from core.recommender import recommend_next_product
++
++logger = logging.getLogger(__name__)
++
++# OpenRouter API endpoint and config (per SPEC).
++_OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
++_DEFAULT_MODEL = "google/gemini-2.0-flash-001"
++_TIMEOUT_SECONDS = 25.0
++
++# Min/max number of heuristic insights per the SPEC ("3-6 insights").
++_MIN_INSIGHTS = 3
++_MAX_INSIGHTS = 6
++
++# System prompt telling the model to emit EXACTLY the LLMInsights schema.
++_LLM_SYSTEM_PROMPT = (
++    "You are the revenue intelligence copilot for a digital-product creator. "
++    "Analyze the analytics report JSON provided by the user and respond with "
++    "STRICT JSON matching EXACTLY this schema (no markdown, no commentary):\n"
++    '{"insights": [string, ...], '
++    '"promo_email": {"subject": string, "body": string}, '
++    '"next_product": {"name": string, "rationale": string, "evidence": string}}\n'
++    "Rules:\n"
++    "1. insights: 3-6 short, specific, data-grounded insights (revenue, orders, "
++    "avg order value, repeat-purchase rate, top products, momentum, churn "
++    "signals, customer questions). Never invent numbers.\n"
++    "2. promo_email: a compelling promo email for the TOP product using REAL "
++    "report numbers — subject (under 60 chars) and a 3-paragraph body. If "
++    "top_products is empty, write a store-level email from total_revenue and "
++    "total_orders.\n"
++    "3. next_product: one concrete next product to build, grounded in the "
++    "report (dominant category + customer questions as demand signals). "
++    "Quote a real customer question in evidence when one matches.\n"
++    "4. Casual, confident creator tone. No emoji spam, no ALL CAPS."
++)
++
++
++def _money(value: float) -> str:
++    """Deterministic dollar formatting for insight strings."""
++    if abs(value - round(value)) < 0.005:
++        return f"${value:,.0f}"
++    return f"${value:,.2f}"
++
++
++def _heuristic_insight_list(report: AnalyticsReport) -> list[str]:
++    """Rule-based insights (3-6) drawn from the report numbers.
++
++    Purely deterministic: candidates are added in a fixed order from the
++    report's own fields, trimmed to ``_MAX_INSIGHTS`` and padded with a
++    generic observation to reach ``_MIN_INSIGHTS``.
++    """
++    candidates: list[str] = []
++
+… omitted 148 diff line(s) across 1 additional file(s)/section(s)
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Now the test file:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ ✍️ preparing write_file…
+  ┊ ✍️  write     /Users/neilthepineapplegoat/creator-income-copilot/tests/test_llm.py  0.9s
+  ┊ review diff
+a/tests/test_llm.py → b/tests/test_llm.py
+@@ -0,0 +1,259 @@
++"""Tests for core/llm.py.
++
++Covers the keyless heuristic fallback (used_fallback=True, valid LLMInsights),
++the heuristic path on a hand-built report with real numbers, graceful
++handling of an empty report, and the LLM-path degradation (network error /
++invalid JSON / success) — ALL fully mocked, so no test ever touches the
++network.
++"""
++import json
++import logging
++
++import httpx
++import pytest
++
++from core.llm import generate_insights, heuristic_insights
++from core.models import (
++    AnalyticsReport,
++    ChurnSignal,
++    ProductStats,
++    Trend,
++)
++
++
++# ---------------------------------------------------------------------------
++# Fixtures / helpers
++# ---------------------------------------------------------------------------
++
++def _report() -> AnalyticsReport:
++    """Hand-built report with real, verifiable numbers.
++
++    Total revenue $2,450 across 98 orders from 71 unique customers; the top
++    product 'Notion Life Planner' ($1,550, 63.3% share, momentum up) and a
++    customer question pointing at a template product.
++    """
++    return AnalyticsReport(
++        period_start="2026-07-01",
++        period_end="2026-07-14",
++        total_revenue=2450.0,
++        total_orders=98,
++        unique_customers=71,
++        avg_order_value=25.0,
++        repeat_purchase_rate=18.5,
++        top_products=[
++            ProductStats(
++                name="Notion Life Planner",
++                units=62,
++                revenue=1550.0,
++                share_pct=63.3,
++                refunds=2,
++                avg_price=25.0,
++                momentum="up",
++                momentum_pct=34.0,
++            ),
++            ProductStats(
++                name="Resume Kit PDF",
++                units=36,
++                revenue=900.0,
++                share_pct=36.7,
++                refunds=0,
++                avg_price=25.0,
++                momentum="flat",
++                momentum_pct=0.0,
++            ),
++        ],
++        revenue_by_day=[
++            {"date": "2026-07-01", "revenue": 120.0, "orders": 5},
++            {"date": "2026-07-02", "revenue": 130.0, "orders": 6},
++        ],
++        trends=[
++            Trend(
++                label="Last 7 days vs prior 7",
++                direction="up",
++                magnitude_pct=21.0,
++                description=(
++                    "Revenue grew 21% week-over-week, led by Notion Life Planner."
++                ),
++            )
++        ],
+… omitted 181 diff line(s) across 1 additional file(s)/section(s)
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Running the tests:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -m pytest tests/test_llm.py -q 2>&1 | tail -20  0.9s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    9 passed. Let me confirm the full suite still green (no cross-module breakage):
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -m pytest tests/ -q 2>&1 | tail -5  0.7s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Done. All green — 44 passed (9 new llm tests + 35 existing).
+    
+    Files written:
+    - /Users/neilthepineapplegoat/creator-income-copilot/core/llm.py
+    - /Users/neilthepineapplegoat/creator-income-copilot/tests/test_llm.py
+    
+    What's in core/llm.py (per SPEC, nothing else touched):
+    - generate_insights(report, api_key): no key → heuristic fallback immediately, never raises. With key → load_dotenv(), POST to OpenRouter chat/completions, model from OPENROUTER_MODEL (default google/gemini-2.0-flash-001), response_format json_object, 25s httpx timeout, system prompt demands EXACT LLMInsights schema. Any exception (network/status/timeout) or invalid JSON/missing content/schema mismatch → logged warning + heuristic fallback.
+    - heuristic_insights(report): 3-6 rule-based insights from real report numbers (revenue, orders, top product + share, AOV, repeat rate, trends, churn, questions — trimmed to 6, padded to 3), promo email via core.promo.build_promo_email, next product via core.recommender.recommend_next_product, used_fallback=True.
+    
+    Tests (network fully mocked via monkeypatched httpx.post): no-key fallback valid + identical to heuristic_insights; real-number assertions ($2,450, 98 orders, promo subject, "Resume Template" from the question demand signal); empty report no raise; LLM network error → fallback with warning logged; invalid JSON → fallback; schema mismatch → fallback; success path → used_fallback=False + verifies payload (model, response_format, 25s timeout, auth header); OPENROUTER_MODEL env override.
+    
+    Final output:
+    $ .venv/bin/python -m pytest tests/ -q
+    44 passed in 0.20s
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Resume this session with:
+  hermes --resume 20260804_005239_19b7e0
+
+Session:        20260804_005239_19b7e0
+Duration:       1m 47s
+Messages:       20 (1 user, 18 tool calls)

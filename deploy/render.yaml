@@ -1,0 +1,22 @@
+# Creator Income Copilot — Render Blueprint (Wave 4)
+# Deploy: push this repo to GitHub, then in Render: "New > Blueprint"
+# and point it at the repo root (render.yaml lives in deploy/ — select it
+# as the blueprint file, or use the "Render Blueprint" from the repo).
+# The app reads OPENROUTER_API_KEY from its environment at runtime and
+# degrades to heuristic fallback when it is missing.
+
+services:
+  - type: web
+    name: creator-income-copilot
+    runtime: python
+    plan: free
+    region: oregon
+    rootDir: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: OPENROUTER_API_KEY
+        sync: false   # prompted at deploy time — optional, app works without it

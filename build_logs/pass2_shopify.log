@@ -1,0 +1,264 @@
+
+╭──────────── Hermes Agent v0.12.0 (2026.4.30) · upstream 54e78cad ────────────╮
+│                                     Available Tools                          │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    browser-cdp: browser_cdp,                │
+│   ⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀    browser_dialog                           │
+│   ⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀    file: patch, read_file, search_files,    │
+│   ⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀    write_file                               │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    hermes-yuanbao: yb_query_group_info,     │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    homeassistant: ha_call_service,          │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ha_get_state, ...                        │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    image_gen: image_generate                │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    kanban: kanban_block, kanban_comment,    │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠑⢶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    rl: rl_check_status, rl_edit_config,     │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⢰⡆⠈⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠈⣡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    spotify: spotify_albums,                 │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    spotify_devices, ...                     │
+│                                     (and 1 more toolsets...)                 │
+│  deepseek-v4-flash · Nous Research                                           │
+│     /Users/neilthepineapplegoat     MCP Servers                              │
+│   Session: 20260804_010141_c50580   neo (stdio) — 21 tool(s)                 │
+│                                     figma (stdio) — 6 tool(s)                │
+│                                     filesystem (stdio) — 18 tool(s)          │
+│                                     memory (stdio) — 13 tool(s)              │
+│                                     sequential-thinking (stdio) — 5 tool(s)  │
+│                                                                              │
+│                                     Available Skills                         │
+│                                     apple: apple-notes, apple-reminders,     │
+│                                     findmy, imessage                         │
+│                                     autonomous-ai-agents: claude-code,       │
+│                                     codex, command-code, hermes-agent,...    │
+│                                     creative: architecture-diagram,          │
+│                                     ascii-art, ascii-video, b...             │
+│                                     data-science: jupyter-live-kernel        │
+│                                     devops: kanban-orchestrator,             │
+│                                     kanban-worker, webhook-sub...            │
+│                                     email: himalaya                          │
+│                                     gaming: minecraft-modpack-server,        │
+│                                     pokemon-player                           │
+│                                     general: ai-seo, cold-email,             │
+│                                     copywriting, data-visualiza...           │
+│                                     github: codebase-inspection,             │
+│                                     github-auth, github-code-r...            │
+│                                     marketing: website-promotion             │
+│                                     mcp: mcp-server-from-github, native-mcp  │
+│                                     media: gif-search, heartmula, songsee,   │
+│                                     spotify, youtub...                       │
+│                                     mlops: audiocraft-audio-generation,      │
+│                                     axolotl, dspy, eva...                    │
+│                                     note-taking: obsidian                    │
+│                                     openclaw-imports: find-skills,           │
+│                                     remotion-best-practices                  │
+│                                     productivity: airtable,                  │
+│                                     digital-product-selling,                 │
+│                                     google-works...                          │
+│                                     red-teaming: godmode,                    │
+│                                     kali-pi-bugbounty-recon                  │
+│                                     research: arxiv, blogwatcher, dig,       │
+│                                     duckduckgo-search, llm...                │
+│                                     security: bug-bounty-recon               │
+│                                     smart-home: openhue                      │
+│                                     social-media: xurl                       │
+│                                     software-development:                    │
+│                                     apify-actor-development,                 │
+│                                     debugging-hermes-tui-c...                │
+│                                                                              │
+│                                     6 tools · 116 skills · 5 MCP servers ·   │
+│                                     /help for commands                       │
+│                                     ⚠ 205 commits behind — run hermes        │
+│                                     update to update                         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Query: You are a coding subagent for the 'Creator Income Copilot' project at 
+/Users/neilthepineapplegoat/creator-income-copilot. FIRST read 
+/Users/neilthepineapplegoat/creator-income-copilot/EXPANSION.md, 
+/Users/neilthepineapplegoat/creator-income-copilot/SPEC.md, 
+/Users/neilthepineapplegoat/creator-income-copilot/core/models.py, and 
+/Users/neilthepineapplegoat/creator-income-copilot/core/parser.py (the existing 
+Payhip/Gumroad/generic parser — match its style).
+YOUR TASK: write 
+/Users/neilthepineapplegoat/creator-income-copilot/core/parsers/shopify.py 
+implementing parse(text) -> (list[SaleRecord], list) for Shopify orders exports.
+Shopify columns: 'Name' (order id, e.g. #1001), 'Created at' (e.g. 2026-06-01 
+14:32:00 -0400), 'Total' (e.g. 29.00), 'Lineitem quantity', 'Lineitem name', 
+'Financial status' (paid/refunded/voided), 'Email' (customer). Refunded when 
+status contains 'refund'. Price = Total/quantity when qty>1. Same 
+synonym/whitespace handling style as core/parser.py. NEVER raise — warn+skip bad
+rows. Write 
+/Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_shopify.py
+with a realistic fixture and exact assertions.
+VERIFY: cd /Users/neilthepineapplegoat/creator-income-copilot && 
+.venv/bin/python -m pytest tests/test_parsers_shopify.py -q — green.
+Do NOT modify core/parser.py or core/models.py. Report: files + test output.
+Initializing agent...
+────────────────────────────────────────
+
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/EXPANSION.md  8.4s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/SPEC.md  8.4s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/models.py  8.4s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/parser.py  8.4s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Read the spec, models, and existing parser. Now let me check the current project structure before writing.
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🔎 preparing search_files…
+  ┊ 🔎 preparing search_files…
+  ┊ 🔎 find      *  1.1s
+  ┊ 🔎 find      *.py  1.1s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    The parsers package already exists with siblings (ko_fi.py, lemon.py) and a shopify.py + test file are present — likely from a parallel agent. Let me read them to match the established pattern.
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/parsers/shopify.py  1.1s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/parsers/ko_fi.py  1.2s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/parsers/lemon.py  1.1s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/parsers/__init__.py  0.6s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_shopify.py  1.1s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    The parsers package already exists — core/parsers/shopify.py and tests/test_parsers_shopify.py are both present (siblings ko_fi.py and lemon.py are there too, from the parallel swarm). The existing shopify.py already implements the task contract. Let me verify it against the requirements and run the tests.
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -m pytest tests/test_parsers_shopify.py -q 2>&1 | tail -20  0.6s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    All 18 tests pass already. But I spotted one robustness gap versus the task's "NEVER raise" requirement and the sibling parsers: parse(None) would raise AttributeError — lemon.py guards with isinstance(text, str), ko_fi wraps in try/except. Let me confirm the gap, then close it.
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -c "
+from core.parsers.shopify import parse
+try:
+    print(parse(None))
+except Exception as e:
+    print('RAISES:', type(e).__name__, e)
+"  0.3s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Confirmed — parse(None) raises, violating "NEVER raise". Fixing it the same way lemon.py does:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🔧 preparing patch…
+  ┊ 🔧 patch     /Users/neilthepineapplegoat/creator-income-copilot/core/parsers/shopify.py  1.9s
+  ┊ review diff
+a//Users/neilthepineapplegoat/creator-income-copilot/core/parsers/shopify.py → b//Users/neilthepineapplegoat/creator-income-copilot/core/parsers/shopify.py
+@@ -253,6 +253,9 @@
+     Invalid rows are skipped and reported as warnings — never raised.
+     """
+     warnings: list[str] = []
++    if not isinstance(text, str):
++        warnings.append(f"Expected CSV text, got {type(text).__name__} — nothing parsed")
++        return [], warnings
+     rows = [
+         row for row in csv.reader(io.StringIO(text.lstrip("\ufeff")))
+         if any(cell.strip() for cell in row)
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Now locking the never-raise guarantee in with a test in the existing test file:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🔧 preparing patch…
+  ┊ 🔧 patch     /Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_shopify.py  1.6s
+  ┊ review diff
+a//Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_shopify.py → b//Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_shopify.py
+@@ -221,6 +221,14 @@
+     assert any("Row 3" in w and "skipped" in w for w in warnings)
+ 
+ 
++def test_shopify_never_raises_on_non_str_input() -> None:
++    # Non-string input (e.g. None from a malformed upload) must warn, never raise.
++    for bad in (None, 123, b"Name,Created at\n"):
++        records, warnings = parse(bad)
++        assert records == []
++        assert warnings and "Expected CSV text" in warnings[0]
++
++
+ def test_supported_sources_exported() -> None:
+     assert isinstance(SUPPORTED_SOURCES, dict)
+     assert "shopify" in SUPPORTED_SOURCES
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -m pytest tests/test_parsers_shopify.py -q 2>&1 | tail -5  1.1s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    19 passed. Running the full suite to confirm nothing else broke, and verifying core/parser.py + core/models.py are untouched:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -m pytest tests/ -q 2>&1 | tail -8  1.4s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Full suite green: 111 passed (the StarletteDeprecationWarning is pre-existing, from fastapi's testclient, unrelated). Quick git check that the frozen files are untouched:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && git status --short 2>/dev/null || echo "no git repo"  0.3s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Done. Report:
+    
+    FILES
+    - /Users/neilthepineapplegoat/creator-income-copilot/core/parsers/shopify.py — Shopify orders export parser. parse(text) -> (list[SaleRecord], list[str]), exports SUPPORTED_SOURCES. Header matching is case/whitespace-insensitive with synonym priority (Total outranks Subtotal), matching core/parser.py style. Refunded when Financial status contains "refund" (covers refunded + partially refunded); price = Total/quantity when qty>1 (rounded to 2dp, so price*qty == Total); qty invalid/zero defaults to 1 with warning; bad date/product/price rows warn+skip; BOM stripped. Never raises.
+    - /Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_shopify.py — realistic fixture (8 rows: multi-lineitem order #1007 split across rows, extra real columns Subtotal/Shipping/Tags/Currency that must be ignored, quoted product names, voided/refunded/partially-refunded statuses) + exact assertions: per-row fields, datetime offsets stripped to naive, per-unit price math, price*qty==Total invariant, refund detection, multi-lineitem split, case/whitespace/BOM headers, bad date/price/product warn+skip, bad qty default, missing optional columns fallback, negative total marks refund, empty CSV, missing required columns, garbage rows, non-str input.
+    
+    Note: the files already existed (parallel swarm had landed them, green before I arrived). I made one fix: parse(None)/non-str input raised AttributeError, violating the task's "NEVER raise" — added the isinstance guard (same pattern as lemon.py) plus a test locking it in.
+    
+    TEST OUTPUT
+      tests/test_parsers_shopify.py  ->  19 passed in 0.13s
+      tests/ (full suite)            ->  111 passed, 1 warning in 1.03s
+                                       (warning is pre-existing StarletteDeprecationWarning from fastapi testclient)
+    
+    core/parser.py and core/models.py: read only, not modified. No git repo present, so no diff to show, but the only edits were the two files above.
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Resume this session with:
+  hermes --resume 20260804_010141_c50580
+
+Session:        20260804_010141_c50580
+Duration:       3m 45s
+Messages:       30 (1 user, 28 tool calls)
+��──────────────────────╮
+    Now run the test suite:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -m pytest tests/test_parsers_shopify.py -q 2>&1 | tail -20  0.6s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    All 18 pass. Let me confirm the full suite stays green (nothing else touched):
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -m pytest tests/ -q 2>&1 | tail -5  1.8s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Done. Both files written, full suite green (109 passed, including the 18 new Shopify tests).
+    
+    Files
+    - /Users/neilthepineapplegoat/creator-income-copilot/core/parsers/shopify.py — parse(text) -> (list[SaleRecord], list[str]). Exports SUPPORTED_SOURCES dict. Header matching is case-insensitive/whitespace-normalized/synonym-based, same helpers and warning style as core/parser.py (self-contained copies, no private imports, so it stays testable in isolation per the engineering rules). core/parser.py and core/models.py untouched.
+    - /Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_shopify.py — realistic fixture + 18 exact assertions.
+    
+    Behavior notes
+    - 'Total' is the whole-order total; per-unit price = Total / quantity when qty > 1, rounded to 2dp (e.g. 58.00/2 -> 29.00, 9.99/3 -> 3.33). This keeps the analytics invariant price * quantity == order Total — asserted explicitly in the tests.
+    - Refunded iff Financial status contains 'refund' (covers 'refunded' and 'partially refunded'); 'voided' and 'paid' are not refunded. Negative total also marks refunded, mirroring core.
+    - Shopify's '-0400' offset dates parse via datetime.fromisoformat and are stripped to naive datetimes (2026-06-01 14:32:00 -0400 -> datetime(2026,6,1,14,32)).
+    - 'Total' outranks 'Subtotal' in the synonym priority so a full Shopify export never prices by line-item subtotal; extra columns (Shipping, Tags, etc.) are ignored.
+    - Never raises: bad date / bad price / missing product / ragged rows warn + skip; bad quantity defaults to 1; empty CSV and missing required columns return warnings.
+    
+    Test output
+      .venv/bin/python -m pytest tests/test_parsers_shopify.py -q
+      18 passed in 0.13s
+      Full suite: 109 passed, 1 warning (pre-existing StarletteDeprecationWarning)
+    
+    One integration note: per EXPANSION.md, core/parser.py's parse_csv still needs its source_hint routing ("shopify" -> core.parsers.shopify.parse) — that's the separate "Update core/parser.py" item, which I left untouched as instructed.
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Resume this session with:
+  hermes --resume 20260804_010106_dbc5bb
+
+Session:        20260804_010106_dbc5bb
+Duration:       3m 12s
+Messages:       24 (1 user, 22 tool calls)

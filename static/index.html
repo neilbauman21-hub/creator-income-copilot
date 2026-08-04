@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Creator Income Copilot — income intelligence for digital-product sellers. Upload your sales CSV and get analytics, AI insights, a promo email draft, and a next-product recommendation.">
+  <meta name="theme-color" content="#0a0d13">
+  <title>Creator Income Copilot</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238b7bff'/%3E%3Ctext x='32' y='45' font-size='34' text-anchor='middle' fill='white' font-family='Arial'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <noscript>
+    <div class="noscript" role="alert">
+      <strong>JavaScript is required.</strong> Creator Income Copilot processes your CSV in memory and renders the dashboard with JavaScript — please enable it and reload the page.
+    </div>
+  </noscript>
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Creator Income Copilot</h1>
+        <p class="tagline">Income intelligence for digital-product sellers</p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <button id="btnSampleTop" class="btn btn-ghost" type="button">Try sample data</button>
+      <button id="btnUploadTop" class="btn btn-primary" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Upload CSV
+      </button>
+      <input type="file" id="fileInput" accept=".csv,.txt,text/csv,text/plain" hidden>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ UPLOAD ZONE ============ -->
+    <section id="uploadSection" class="upload-section">
+      <div id="dropZone" class="dropzone" tabindex="0" role="button" aria-label="Upload a sales CSV file">
+        <div class="dz-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+            <line x1="7" y1="13" x2="5" y2="13" stroke-opacity="0.5"/>
+            <line x1="13" y1="13" x2="11" y2="13" stroke-opacity="0.5"/>
+          </svg>
+        </div>
+        <h2>Drop your sales CSV here</h2>
+        <p class="dz-sub">Payhip, Gumroad, or any generic orders export &nbsp;·&nbsp; <strong>click to browse</strong></p>
+        <p class="dz-hint">.csv or .txt &nbsp;·&nbsp; up to 5 MB &nbsp;·&nbsp; no login, nothing stored — processed in memory</p>
+      </div>
+      <div class="upload-alt">
+        <span class="or">or</span>
+        <button id="btnSample" class="btn btn-secondary" type="button">Try the sample dataset <span aria-hidden="true">&rarr;</span></button>
+      </div>
+    </section>
+
+    <!-- ============ RESULTS ============ -->
+    <section id="results" class="results" hidden>
+      <div class="results-head">
+        <div>
+          <h2>Your store at a glance</h2>
+          <p id="periodRange" class="muted"></p>
+        </div>
+        <div class="results-actions">
+          <button id="btnDownloadCsv" class="btn btn-secondary" type="button" disabled title="Download this report as a CSV file">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download report (CSV)
+          </button>
+          <button id="btnNewUpload" class="btn btn-ghost" type="button">&larr; New upload</button>
+        </div>
+      </div>
+
+      <!-- KPI cards -->
+      <div id="kpiGrid" class="kpi-grid"></div>
+
+      <!-- Chart + top products -->
+      <div class="grid-2">
+        <div id="section-chart" class="card chart-card">
+          <div class="card-head">
+            <h3>Revenue over time</h3>
+            <span class="chip chip-neutral">daily</span>
+          </div>
+          <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
+        </div>
+        <div id="section-products" class="card">
+          <div class="card-head">
+            <h3>Top products</h3>
+            <span class="chip chip-neutral">by revenue</span>
+          </div>
+          <ol id="topProducts" class="product-list"></ol>
+        </div>
+      </div>
+
+      <!-- Trends + churn -->
+      <div class="grid-2">
+        <div id="section-trends" class="card">
+          <div class="card-head">
+            <h3>Trends</h3>
+            <span class="chip chip-neutral">last 7d vs prior 7d</span>
+          </div>
+          <ul id="trendsList" class="signal-list"></ul>
+        </div>
+        <div id="section-churn" class="card">
+          <div class="card-head">
+            <h3>Churn signals</h3>
+            <span class="chip chip-warn">needs attention</span>
+          </div>
+          <ul id="churnList" class="signal-list"></ul>
+        </div>
+      </div>
+
+      <!-- AI panel -->
+      <div id="section-ai" class="ai-panel">
+        <div class="ai-panel-head">
+          <div class="ai-title">
+            <span class="ai-badge" aria-hidden="true">&#10022;</span>
+            <h2>AI Copilot</h2>
+          </div>
+          <span id="fallbackChip" class="chip chip-warn" hidden title="No LLM API key configured — heuristic insights used">heuristic mode</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="card ai-card">
+            <div class="card-head">
+              <h3>Key insights</h3>
+              <span class="chip chip-accent">AI</span>
+            </div>
+            <ol id="insightsList" class="insights-list"></ol>
+          </div>
+          <div class="card ai-card">
+            <div class="card-head">
+              <h3>Next product to build</h3>
+              <span class="chip chip-accent">recommendation</span>
+            </div>
+            <div id="nextProduct" class="next-product"></div>
+          </div>
+        </div>
+
+        <div id="section-promo" class="card ai-card promo-card">
+          <div class="card-head">
+            <h3>Draft promo email</h3>
+            <button id="btnCopy" class="btn btn-small btn-primary" type="button">Copy email</button>
+          </div>
+          <div class="promo">
+            <div id="promoSubject" class="promo-subject"></div>
+            <div id="promoBody" class="promo-body"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warnings -->
+      <div id="warningsCard" class="card warnings" hidden>
+        <div class="card-head">
+          <h3>Warnings</h3>
+          <span class="chip chip-warn">review</span>
+        </div>
+        <ul id="warningsList" class="warnings-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Creator Income Copilot &nbsp;&middot;&nbsp; Built for the NativeBuilder AI Factory Hackathon &nbsp;&middot;&nbsp; &copy; <span id="year">2026</span> &nbsp;&middot;&nbsp; your data is processed in memory and never stored</p>
+  </footer>
+
+  <!-- ============ TOAST ============ -->
+  <div id="toast" class="toast" role="alert" hidden></div>
+
+  <!-- ============ LOADING OVERLAY ============ -->
+  <div id="overlay" class="overlay" hidden>
+    <div class="loader-card" role="status" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <h3 id="stageTitle">Parsing CSV...</h3>
+      <ul id="stageList" class="stage-list">
+        <li data-stage="0">Parsing CSV...</li>
+        <li data-stage="1">Crunching numbers...</li>
+        <li data-stage="2">Generating AI insights...</li>
+      </ul>
+      <p class="stage-hint">Tip: a full analysis usually lands in under 10 seconds</p>
+    </div>
+  </div>
+
+  <!-- Chart.js 4.x via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

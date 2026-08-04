@@ -1,0 +1,404 @@
+
+╭──────────── Hermes Agent v0.12.0 (2026.4.30) · upstream 54e78cad ────────────╮
+│                                     Available Tools                          │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    browser-cdp: browser_cdp,                │
+│   ⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀    browser_dialog                           │
+│   ⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀    file: patch, read_file, search_files,    │
+│   ⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀    write_file                               │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    hermes-yuanbao: yb_query_group_info,     │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    homeassistant: ha_call_service,          │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ha_get_state, ...                        │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    image_gen: image_generate                │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    kanban: kanban_block, kanban_comment,    │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠑⢶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    rl: rl_check_status, rl_edit_config,     │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⢰⡆⠈⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠈⣡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    spotify: spotify_albums,                 │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    spotify_devices, ...                     │
+│                                     (and 1 more toolsets...)                 │
+│  deepseek-v4-flash · Nous Research                                           │
+│     /Users/neilthepineapplegoat     MCP Servers                              │
+│   Session: 20260804_010141_c8ddec   neo (stdio) — 21 tool(s)                 │
+│                                     figma (stdio) — 6 tool(s)                │
+│                                     filesystem (stdio) — 18 tool(s)          │
+│                                     memory (stdio) — 13 tool(s)              │
+│                                     sequential-thinking (stdio) — 5 tool(s)  │
+│                                                                              │
+│                                     Available Skills                         │
+│                                     apple: apple-notes, apple-reminders,     │
+│                                     findmy, imessage                         │
+│                                     autonomous-ai-agents: claude-code,       │
+│                                     codex, command-code, hermes-agent,...    │
+│                                     creative: architecture-diagram,          │
+│                                     ascii-art, ascii-video, b...             │
+│                                     data-science: jupyter-live-kernel        │
+│                                     devops: kanban-orchestrator,             │
+│                                     kanban-worker, webhook-sub...            │
+│                                     email: himalaya                          │
+│                                     gaming: minecraft-modpack-server,        │
+│                                     pokemon-player                           │
+│                                     general: ai-seo, cold-email,             │
+│                                     copywriting, data-visualiza...           │
+│                                     github: codebase-inspection,             │
+│                                     github-auth, github-code-r...            │
+│                                     marketing: website-promotion             │
+│                                     mcp: mcp-server-from-github, native-mcp  │
+│                                     media: gif-search, heartmula, songsee,   │
+│                                     spotify, youtub...                       │
+│                                     mlops: audiocraft-audio-generation,      │
+│                                     axolotl, dspy, eva...                    │
+│                                     note-taking: obsidian                    │
+│                                     openclaw-imports: find-skills,           │
+│                                     remotion-best-practices                  │
+│                                     productivity: airtable,                  │
+│                                     digital-product-selling,                 │
+│                                     google-works...                          │
+│                                     red-teaming: godmode,                    │
+│                                     kali-pi-bugbounty-recon                  │
+│                                     research: arxiv, blogwatcher, dig,       │
+│                                     duckduckgo-search, llm...                │
+│                                     security: bug-bounty-recon               │
+│                                     smart-home: openhue                      │
+│                                     social-media: xurl                       │
+│                                     software-development:                    │
+│                                     apify-actor-development,                 │
+│                                     debugging-hermes-tui-c...                │
+│                                                                              │
+│                                     6 tools · 116 skills · 5 MCP servers ·   │
+│                                     /help for commands                       │
+│                                     ⚠ 205 commits behind — run hermes        │
+│                                     update to update                         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Query: You are a coding subagent for the 'Creator Income Copilot' project at 
+/Users/neilthepineapplegoat/creator-income-copilot. FIRST read 
+/Users/neilthepineapplegoat/creator-income-copilot/EXPANSION.md, 
+/Users/neilthepineapplegoat/creator-income-copilot/core/models.py, and 
+/Users/neilthepineapplegoat/creator-income-copilot/core/parser.py (match its 
+style).
+YOUR TASK: write 
+/Users/neilthepineapplegoat/creator-income-copilot/core/parsers/lemon.py 
+implementing parse(text) -> (list[SaleRecord], list) for Lemon Squeezy orders. 
+Columns: 'Order' (id), 'Created' (date), 'Total' (e.g. 19.00), 'Product', 
+'Email', 'Status' (paid/refunded/pending — refunded when contains 'refund'). 
+Same style as core/parser.py. NEVER raise. Write 
+/Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_lemon.py 
+with fixture + exact assertions.
+VERIFY: cd /Users/neilthepineapplegoat/creator-income-copilot && 
+.venv/bin/python -m pytest tests/test_parsers_lemon.py -q — green.
+Do NOT modify core/parser.py or core/models.py. Report: files + test output.
+Initializing agent...
+────────────────────────────────────────
+
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/EXPANSION.md  8.3s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/models.py  8.3s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/parser.py  8.3s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Now let me check the existing parsers package and test styles:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🔎 preparing search_files…
+  ┊ 🔎 preparing search_files…
+  ┊ 🔎 find      *  0.7s
+  ┊ 🔎 find      *.py  0.9s
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/parsers/__init__.py  1.1s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/tests/test_parser.py  1.0s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Now I have the full picture. Let me check the venv Python version, then write the parser:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python --version && .venv/bin/python -c "from datetime import datetime; print(datetime.fromisoformat('2026-07-01T09:14:22.000'))"  0.4s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Python 3.11, fromisoformat handles fractional seconds. Writing the parser:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ ✍️ preparing write_file…
+  ┊ ✍️  write     /Users/neilthepineapplegoat/creator-income-copilot/core/parsers/lemon.py  0.8s
+  ┊ review diff
+a/core/parsers/lemon.py → b/core/parsers/lemon.py
+@@ -1,138 +1,47 @@
+ """core/parsers/lemon.py — Lemon Squeezy orders CSV parsing.
+ 
+-Reads raw CSV text from a Lemon Squeezy orders export (Order, Created,
+-Total, Product, Email, Status) and normalizes it into SaleRecord objects.
+-Header matching is case-insensitive, whitespace-normalized and
++Reads raw CSV text from a Lemon Squeezy orders export (columns: Order,
++Created, Total, Product, Email, Status) and normalizes it into SaleRecord
++objects. Header matching is case-insensitive, whitespace-normalized and
+ synonym-based, mirroring core/parser.py. Invalid rows are reported as
+ warnings, never raised.
++
++Refund detection: an order is marked refunded when its Status cell
++contains "refund" (e.g. "refunded", "partially_refunded"), or when the
++Total is negative.
+ """
+ from __future__ import annotations
+ 
+ import csv
+ import io
+-import re
+-from datetime import datetime
+ 
+ from core.models import SaleRecord
++from core.parser import (
++    _clean,
++    _clean_currency,
++    _clean_email,
++    _normalize_header,
++    _parse_date,
++    _parse_int,
++    _parse_price,
++)
+ 
+-# Source registry for the router in core/parser.py.
+-SUPPORTED_SOURCES: dict[str, str] = {
+-    "lemon": "Lemon Squeezy orders export (Order, Created, Total, Product, Email, Status)",
+-}
++SUPPORTED_SOURCES = {"lemon", "lemonsqueezy", "lemon squeezy"}
+ 
+ # Canonical field -> accepted (normalized) header synonyms, best first.
+ # Earlier entries win when several headers match the same field.
+ _SYNONYMS: dict[str, list[str]] = {
+-    "order_id": [
+-        "order", "order id", "order number", "order no", "order #",
+-        "sale id", "transaction id",
+-    ],
+-    "date": [
+-        "created", "created at", "created date", "date", "order date",
+-        "purchase date", "datetime", "timestamp",
+-    ],
+-    "product": [
+-        "product", "product name", "product title", "item", "item name",
+-        "title", "variant", "product permalink",
+-    ],
+-    "price": [
+-        "total", "amount", "price", "subtotal", "total amount",
+-        "order total", "revenue", "gross amount",
+-    ],
+-    "currency": ["currency", "currency code", "currency symbol"],
+-    "quantity": ["quantity", "qty", "units", "count", "qty purchased"],
+-    "email": [
+-        "customer email", "email", "buyer email", "email address",
+-        "purchaser email",
+-    ],
++    "order_id": ["order", "order id", "order number", "sale id"],
++    "date": ["created", "created at", "date", "order date", "purchase date"],
++    "product": ["product", "product name", "product title", "item", "variant"],
++    "price": ["total", "amount", "order total", "price", "subtotal"],
++    "currency": ["currency", "currency code"],
++    "quantity": ["quantity", "qty", "units"],
++    "email": ["email", "customer email", "buyer email", "user email"],
+     "status": ["status", "order status", "payment status", "state"],
+ }
+ 
+ _REQUIRED_FIELDS = ("date", "product", "price")
+-
+-_EMPTY_VALUES = {"", "none", "null", "na", "n/a", "-", "--", "nan", "guest", "anonymous"}
+-_CURRENCY_SYMBOLS = {"$": "USD", "€": "EUR", "£": "GBP"}
+… omitted 128 diff line(s) across 1 additional file(s)/section(s)
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Now the test file with fixture and exact assertions:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ ✍️ preparing write_file…
+  ┊ ✍️  write     /Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_lemon.py  0.8s
+  ┊ review diff
+a/tests/test_parsers_lemon.py → b/tests/test_parsers_lemon.py
+@@ -11,26 +11,25 @@
+ def lemon_csv() -> str:
+     return (
+         "Order,Created,Total,Product,Email,Status\n"
+-        "1001,2026-07-01 09:14:22,19.00,Notion Minimalist Pack,alice@example.com,paid\n"
+-        "1002,2026-07-02 14:05:11,19.00,Notion Minimalist Pack,bob@example.com,paid\n"
+-        "1003,2026-07-03 18:30:00,9.99,Ebook - Side Hustle Guide,carol@example.com,refunded\n"
+-        "1004,2026-07-04 11:00:00,9.99,Ebook - Side Hustle Guide,dave@example.com,paid\n"
+-        "1005,2026-07-05 09:00:00,19.00,Notion Minimalist Pack,eve@example.com,pending\n"
++        "LS-1001,2026-07-01T09:14:22.000Z,19.00,Notion Minimalist Pack,alice@example.com,paid\n"
++        'LS-1002,2026-07-02 14:05:11,19.00,"Notion Minimalist Pack",bob@example.com,refunded\n'
++        "LS-1003,2026-07-03T18:30:00.000Z,9.99,Ebook - Side Hustle Guide,carol@example.com,paid\n"
++        "LS-1004,2026-07-04 11:00:00,9.99,Ebook - Side Hustle Guide,dave@example.com,pending\n"
++        "LS-1005,2026-07-05 09:00:00,19.00,Notion Minimalist Pack,eve@example.com,partially_refunded\n"
+     )
+ 
+ 
+-def test_lemon_supported_sources_registry() -> None:
++def test_supported_sources() -> None:
+     assert "lemon" in SUPPORTED_SOURCES
+-    assert "Order" in SUPPORTED_SOURCES["lemon"]
+ 
+ 
+-def test_lemon_sale_record_shape(lemon_csv: str) -> None:
++def test_sale_record_shape(lemon_csv: str) -> None:
+     records, warnings = parse(lemon_csv)
+     assert warnings == []
+     assert len(records) == 5
+     assert isinstance(records[0], SaleRecord)
+     rec = records[0]
+-    assert rec.order_id == "1001"
++    assert rec.order_id == "LS-1001"
+     assert rec.date == datetime(2026, 7, 1, 9, 14, 22)
+     assert rec.product == "Notion Minimalist Pack"
+     assert rec.price == 19.0
+@@ -42,121 +41,70 @@
+     assert rec.source == "lemon"
+ 
+ 
+-def test_lemon_all_rows_parsed(lemon_csv: str) -> None:
++def test_iso_millisecond_and_plain_datetime_dates(lemon_csv: str) -> None:
+     records, _ = parse(lemon_csv)
+-    assert [r.order_id for r in records] == ["1001", "1002", "1003", "1004", "1005"]
+-    assert [r.product for r in records] == [
+-        "Notion Minimalist Pack",
+-        "Notion Minimalist Pack",
+-        "Ebook - Side Hustle Guide",
+-        "Ebook - Side Hustle Guide",
+-        "Notion Minimalist Pack",
+-    ]
+-    assert [r.price for r in records] == [19.0, 19.0, 9.99, 9.99, 19.0]
+-    assert [r.customer_email for r in records] == [
+-        "alice@example.com",
+-        "bob@example.com",
+-        "carol@example.com",
+-        "dave@example.com",
+-        "eve@example.com",
+-    ]
++    assert records[0].date == datetime(2026, 7, 1, 9, 14, 22)
++    assert records[1].date == datetime(2026, 7, 2, 14, 5, 11)
++    assert records[3].date == datetime(2026, 7, 4, 11, 0, 0)
+ 
+ 
+-def test_lemon_refund_via_status_contains_refund(lemon_csv: str) -> None:
+-    records, _ = parse(lemon_csv)
+-    assert [r.refunded for r in records] == [False, False, True, False, False]
++def test_quoted_product_with_comma(lemon_csv: str) -> None:
++    records, warnings = parse(lemon_csv)
++    assert warnings == []
++    assert records[1].product == "Notion Minimalist Pack"
+ 
+ 
+-def test_lemon_partially_refunded_counts_as_refunded() -> None:
++def test_refund_via_status(lemon_csv: str) -> None:
++    records, _ = parse(lemon_csv)
++    assert [r.refunded for r in records] == [False, True, False, False, True]
++
++
++def test_pending_status_not_refunded(lemon_csv: str) -> None:
+… omitted 236 diff line(s) across 1 additional file(s)/section(s)
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Two fixes needed: add a non-str guard to parse (true "never raise"), and remove a bogus assertion in my test (SaleRecord has no status attribute — that would raise AttributeError):
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🔧 preparing patch…
+  ┊ 🔧 preparing patch…
+  ┊ 🔧 patch     /Users/neilthepineapplegoat/creator-income-copilot/core/parsers/lemon.py  1.8s
+  ┊ review diff
+a//Users/neilthepineapplegoat/creator-income-copilot/core/parsers/lemon.py → b//Users/neilthepineapplegoat/creator-income-copilot/core/parsers/lemon.py
+@@ -128,6 +128,9 @@
+     Invalid rows are skipped and reported as warnings — never raised.
+     """
+     warnings: list[str] = []
++    if not isinstance(text, str):
++        warnings.append(f"Expected CSV text, got {type(text).__name__} — nothing parsed")
++        return [], warnings
+     rows = [
+         row for row in csv.reader(io.StringIO(text.lstrip("\ufeff")))
+         if any(cell.strip() for cell in row)
+  ┊ 🔧 patch     /Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_lemon.py  1.8s
+  ┊ review diff
+a//Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_lemon.py → b//Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_lemon.py
+@@ -61,7 +61,6 @@
+ 
+ def test_pending_status
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Odd — th
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Now run the tests:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -m pytest tests/test_parsers_lemon.py -q 2>&1 | tail -20  0.8s
+
+╭─ ⚕ Hermes ─────────────────────────────────────────────────────
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    The file on disk is NOT what I wrote — different function names entirely. A concurrent writer (another swarm agent) overwrote my test file. Let me check the current state of both files:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && ls -la core/parsers/ tests/test_parsers_lemon.py && git status --short 2>/dev/null | head -20; echo ---; git log --oneline -3 2>/dev/null  0.6s [error]
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    The plot thickens — another swarm agent also wrote core/parsers/lemon.py (5443 bytes, not my 8235-byte version) plus shopify.py and ko_fi.py, and overwrote my test file. We're racing on the same Pass 2 task. Let me inspect the current on-disk state and verify it:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/parsers/lemon.py  0.9s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/tests/test_parsers_lemon.py  0.9s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Now I understand the full picture: another swarm agent was assigned the same lemon task concurrently. Their lemon.py (5443B) and test file (6497B) are now on disk, overwriting mine mid-flight. Their implementation is actually solid — imports helpers from core.parser, has a non-str guard, set-based SUPPORTED_SOURCES for the router. My earlier "2 failed" run was my test file running against THEIR lemon.py (TypeError because their SUPPORTED_SOURCES is a set, not subscriptable dict).
+    
+    The end state matters more than whose bytes win. Let me verify the current on-disk state is green:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -m pytest tests/test_parsers_lemon.py -q 2>&1 | tail -8  0.3s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Green. Now the full suite to make sure the concurrent swarm additions (shopify.py, ko_fi.py) don't conflict:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -m pytest tests/ -q 2>&1 | tail -8  2.3s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Done. Full suite green — 109 passed.
+    
+    REPORT
+    
+    Race condition note: while I was writing, another swarm agent was assigned the same lemon task in parallel and overwrote both files mid-flight. Their implementation was already solid and complete, so rather than clobber each other, I verified the on-disk result meets the spec exactly. No further changes needed — final state verified:
+    
+    FILES
+      core/parsers/lemon.py       — parse(text) -> (list[SaleRecord], list[str])
+      tests/test_parsers_lemon.py — fixture + 17 exact-assertion tests
+    
+    WHAT lemon.py DOES (verified against spec)
+      - Columns: Order -> order_id, Created -> date, Total -> price (19.00 -> 19.0),
+        Product, Email, Status.
+      - Status: "paid" -> refunded=False, "pending" -> refunded=False,
+        anything containing "refund" ("refunded", "partially_refunded", case-insensitive)
+        -> refunded=True; negative Total also marks refunded.
+      - Same style as core/parser.py: synonym-based case/whitespace-insensitive header
+        mapping, identical warning wording, per-row try/except, BOM/CRLF handling.
+      - Never raises: non-str input (None/int/bytes) returns ([], [warning]); bad
+        date/price/product rows are warned and skipped; ragged rows skipped.
+      - Imports only from core.models + core.parser (existing core modules) — did NOT
+        modify core/parser.py or core/models.py.
+      - Exports SUPPORTED_SOURCES = {"lemon", "lemonsqueezy", "lemon squeezy"} for the
+        Pass 2 router in core/parser.py.
+    
+    TEST COVERAGE (tests/test_parsers_lemon.py)
+      Record shape, ISO-millisecond + plain datetime dates, quoted product with comma,
+      refund-via-status, pending-not-refunded, partial-refund, negative total, missing
+      optional columns, bad date/price rows skipped, case-insensitive headers,
+      BOM+CRLF, ragged rows, empty CSV, missing required columns, garbage inputs
+      (binary, None, 42, bytes).
+    
+    TEST OUTPUT
+      $ .venv/bin/python -m pytest tests/test_parsers_lemon.py -q
+      17 passed in 0.07s
+    
+      $ .venv/bin/python -m pytest tests/ -q
+      109 passed, 1 warning in 1.81s   (warning is a pre-existing starlette/httpx deprecation, unrelated)
+    
+    The swarm also landed shopify.py and ko_fi.py in core/parsers/ during the race; all their tests pass alongside.
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Resume this session with:
+  hermes --resume 20260804_010107_42d048
+
+Session:        20260804_010107_42d048
+Duration:       3m 31s
+Messages:       35 (1 user, 33 tool calls)

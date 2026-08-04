@@ -1,0 +1,275 @@
+
+╭──────────── Hermes Agent v0.12.0 (2026.4.30) · upstream 54e78cad ────────────╮
+│                                     Available Tools                          │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    browser-cdp: browser_cdp,                │
+│   ⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀    browser_dialog                           │
+│   ⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀    file: patch, read_file, search_files,    │
+│   ⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀    write_file                               │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    hermes-yuanbao: yb_query_group_info,     │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    homeassistant: ha_call_service,          │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ha_get_state, ...                        │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    image_gen: image_generate                │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    kanban: kanban_block, kanban_comment,    │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠑⢶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    rl: rl_check_status, rl_edit_config,     │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⢰⡆⠈⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠈⣡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    spotify: spotify_albums,                 │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    spotify_devices, ...                     │
+│                                     (and 1 more toolsets...)                 │
+│  deepseek-v4-flash · Nous Research                                           │
+│     /Users/neilthepineapplegoat     MCP Servers                              │
+│   Session: 20260804_004756_8a7c72   neo (stdio) — 21 tool(s)                 │
+│                                     figma (stdio) — 6 tool(s)                │
+│                                     filesystem (stdio) — 18 tool(s)          │
+│                                     memory (stdio) — 13 tool(s)              │
+│                                     sequential-thinking (stdio) — 5 tool(s)  │
+│                                                                              │
+│                                     Available Skills                         │
+│                                     apple: apple-notes, apple-reminders,     │
+│                                     findmy, imessage                         │
+│                                     autonomous-ai-agents: claude-code,       │
+│                                     codex, command-code, hermes-agent,...    │
+│                                     creative: architecture-diagram,          │
+│                                     ascii-art, ascii-video, b...             │
+│                                     data-science: jupyter-live-kernel        │
+│                                     devops: kanban-orchestrator,             │
+│                                     kanban-worker, webhook-sub...            │
+│                                     email: himalaya                          │
+│                                     gaming: minecraft-modpack-server,        │
+│                                     pokemon-player                           │
+│                                     general: ai-seo, cold-email,             │
+│                                     copywriting, data-visualiza...           │
+│                                     github: codebase-inspection,             │
+│                                     github-auth, github-code-r...            │
+│                                     marketing: website-promotion             │
+│                                     mcp: mcp-server-from-github, native-mcp  │
+│                                     media: gif-search, heartmula, songsee,   │
+│                                     spotify, youtub...                       │
+│                                     mlops: audiocraft-audio-generation,      │
+│                                     axolotl, dspy, eva...                    │
+│                                     note-taking: obsidian                    │
+│                                     openclaw-imports: find-skills,           │
+│                                     remotion-best-practices                  │
+│                                     productivity: airtable,                  │
+│                                     digital-product-selling,                 │
+│                                     google-works...                          │
+│                                     red-teaming: godmode,                    │
+│                                     kali-pi-bugbounty-recon                  │
+│                                     research: arxiv, blogwatcher, dig,       │
+│                                     duckduckgo-search, llm...                │
+│                                     security: bug-bounty-recon               │
+│                                     smart-home: openhue                      │
+│                                     social-media: xurl                       │
+│                                     software-development:                    │
+│                                     apify-actor-development,                 │
+│                                     debugging-hermes-tui-c...                │
+│                                                                              │
+│                                     6 tools · 115 skills · 5 MCP servers ·   │
+│                                     /help for commands                       │
+│                                     ⚠ 205 commits behind — run hermes        │
+│                                     update to update                         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Query: You are a coding subagent building part of the 'Creator Income Copilot' 
+hackathon project at /Users/neilthepineapplegoat/creator-income-copilot.
+FIRST: read /Users/neilthepineapplegoat/creator-income-copilot/SPEC.md and 
+/Users/neilthepineapplegoat/creator-income-copilot/core/models.py (the frozen 
+data contract).
+YOUR TASK: write 
+/Users/neilthepineapplegoat/creator-income-copilot/core/recommender.py exactly 
+per the SPEC 'core/recommender.py' section. Implement 
+recommend_next_product(report: AnalyticsReport) -> NextProduct (deterministic: 
+dominant product category + signals from report.questions via keyword matching —
+'template' → new template product, 'pdf' → pdf, 'pack'/'bundle' → bundle, 
+'course'/'tutorial' → course, else category extension. Name + rationale + 
+evidence citing a real customer question if one matches. Handle empty questions 
+and empty top_products gracefully) and build_recommender_prompt(report) -> str 
+(LLM prompt text embedding report JSON). Import ONLY from core.models + stdlib.
+VERIFY: cd /Users/neilthepineapplegoat/creator-income-copilot && 
+.venv/bin/python -c "from core.recommender import recommend_next_product; from 
+core.models import AnalyticsReport, ProductStats; 
+r=AnalyticsReport(total_revenue=1200.0, questions=['Do you have a template for 
+wedding planners?'], top_products=[ProductStats(name='Notion Template Pack', 
+revenue=500.0, units=25)]); p=recommend_next_product(r); print(p.name); 
+print(p.evidence[:150])"
+Do NOT modify core/models.py. Do NOT create files outside your assignment. 
+Report: files written + sanity check output.
+Initializing agent...
+────────────────────────────────────────
+
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/SPEC.md  4.9s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/models.py  5.0s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Read both files. Now writing the recommender module per the SPEC contract.
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ ✍️ preparing write_file…
+  ┊ ✍️  write     /Users/neilthepineapplegoat/creator-income-copilot/core/recommender.py  0.8s
+  ┊ review diff
+a/core/recommender.py → b/core/recommender.py
+@@ -0,0 +1,325 @@
++"""Deterministic next-product recommendations for Creator Income Copilot.
++
++Wave 2 (agent F). Pure heuristics — no LLM calls. Serves as the heuristic
++fallback for ``core.llm.generate_insights`` and as the guardrail/seed for the
++LLM path.
++
++Strategy (per SPEC): dominant product category (top product by revenue) plus
++demand signals from ``report.questions`` via keyword matching:
++
++- "template"            -> new template product
++- "pdf"                 -> pdf product
++- "pack" / "bundle"     -> bundle product
++- "course" / "tutorial" -> course product
++- no keyword match      -> extend the dominant product's category
++
++If a customer question matches, it is cited verbatim as evidence. Empty
++``questions`` and empty ``top_products`` are handled gracefully.
++
++Imports ONLY from ``core.models`` and the stdlib (engineering rules).
++"""
++from __future__ import annotations
++
++import json
++import re
++
++from core.models import AnalyticsReport, NextProduct, ProductStats
++
++# Keyword -> category mapping, in SPEC priority order. The first category
++# whose keyword appears in the text wins (so "template" beats "pack").
++_CATEGORY_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
++    ("template", ("template",)),
++    ("pdf", ("pdf",)),
++    ("bundle", ("pack", "bundle")),
++    ("course", ("course", "tutorial")),
++]
++
++_CATEGORY_LABELS: dict[str, str] = {
++    "template": "Template",
++    "pdf": "PDF Guide",
++    "bundle": "Bundle",
++    "course": "Course",
++    "other": "Product",
++}
++
++# Suffix appended to the dominant product's base name when extending its
++# category (no matching customer question).
++_EXTENSION_SUFFIX: dict[str, str] = {
++    "template": "Template Pack 2",
++    "pdf": "PDF Guide 2",
++    "bundle": "Bundle 2",
++    "course": "Course 2",
++    "other": "2",
++}
++
++# Phrases stripped from a product name to recover the "base" line name
++# (longest-first ordering matters: "template pack" before "template").
++_BASE_NOISE: tuple[str, ...] = (
++    "template pack",
++    "template bundle",
++    "templates",
++    "template",
++    "pdf",
++    "ebook",
++    "e-book",
++    "bundle",
++    "pack",
++    "course",
++    "tutorial",
++    "guide",
++    "kit",
++    "set",
++    "collection",
++)
++
++# Question prefixes/suffixes stripped when extracting a topic from a question.
++_QUESTION_PREFIXES: tuple[str, ...] = (
++    "do you have",
++    "do you sell",
+… omitted 247 diff line(s) across 1 additional file(s)/section(s)
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Now the required sanity check, plus edge cases (empty questions, empty top_products, both empty, other keyword variants):
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -c "
+from core.recommender import recommend_next_product, build_recommender_prompt
+from core.models import AnalyticsReport, ProductStats
+
+# REQUIRED SANITY CHECK
+r = AnalyticsReport(total_revenue=1200.0, questions=['Do you have a template for wedding planners?'], top_products=[ProductStats(name='Notion Template Pack', revenue=500.0, units=25)])
+p = recommend_next_product(r)
+print('NAME:', p.name)
+print('EVIDENCE:', p.evidence[:150])
+print('RATIONALE:', p.rationale)
+print()
+
+# edge: pdf question, no dominant product
+r2 = AnalyticsReport(total_revenue=0.0, questions=['Can you make a pdf on budgeting?'])
+p2 = recommend_next_product(r2)
+print('PDF:', p2.name, '|', p2.evidence)
+
+# edge: pack/bundle question
+r3 = AnalyticsReport(total_revenue=100.0, questions=['Do you have a pack for travel planners?'], top_products=[ProductStats(name='Travel Planner Pack', revenue=100.0, units=10)])
+p3 = recommend_next_product(r3)
+print('BUNDLE:', p3.name, '|', p3.evidence)
+
+# edge: course/tutorial question
+r4 = AnalyticsReport(total_revenue=100.0, questions=['Will you make a course on notion?'])
+p4 = recommend_next_product(r4)
+print('COURSE:', p4.name)
+
+# edge: no matching question -> category extension
+r5 = AnalyticsReport(total_revenue=1200.0, questions=['Do you ship internationally?'], top_products=[ProductStats(name='Notion Template Pack', revenue=500.0, units=25)])
+p5 = recommend_next_product(r5)
+print('EXTENSION:', p5.name, '|', p5.evidence)
+
+# edge: empty questions
+r6 = AnalyticsReport(total_revenue=500.0, top_products=[ProductStats(name='Ultimate PDF Bundle', revenue=500.0, units=5)])
+p6 = recommend_next_product(r6)
+print('EMPTY Q:', p6.name, '|', p6.evidence)
+
+# edge: empty everything
+r7 = AnalyticsReport()
+p7 = recommend_next_product(r7)
+print('EMPTY ALL:', p7.name, '|', p7.evidence)
+
+# edge: empty top_products but question present
+r8 = AnalyticsReport(questions=['i need a template for content creators'])
+p8 = recommend_next_product(r8)
+print('NO TOP, Q:', p8.name, '|', p8.evidence)
+
+# prompt smoke test
+prompt = build_recommender_prompt(r)
+assert 'Wedding' not in prompt  # prompt embeds raw JSON, not our heuristic output
+assert '\"questions\"' in prompt and 'template for wedding planners' in prompt
+print('PROMPT OK, len:', len(prompt))
+"
+  0.4s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Done. File written: /Users/neilthepineapplegoat/creator-income-copilot/core/recommender.py
+    
+    What it does (per SPEC):
+    - recommend_next_product(report) -> NextProduct — deterministic. Picks dominant product (max revenue from report.top_products), detects its category via SPEC keyword priority (template > pdf > pack/bundle > course/tutorial > other), then scans report.questions in order. First question carrying a category keyword wins -> builds that format (e.g. "Wedding Planners Template"), citing the real question verbatim in evidence. No match -> category extension of the winner ("Notion Template Pack 2"). Graceful at every empty boundary: empty questions, empty top_products, both empty ("New Digital Product").
+    - build_recommender_prompt(report) -> str — strict-JSON instructions + full report embedded via json.dumps(report.model_dump()).
+    - Imports only core.models + stdlib (json, re).
+    
+    Sanity check output (exactly per your command):
+      NAME: Wedding Planners Template
+      EVIDENCE: A customer asked: 'Do you have a template for wedding planners?'
+    
+    Extra edge coverage verified: pdf ("Budgeting PDF Guide"), pack->bundle ("Travel Planners Bundle"), course ("Notion Course"), no-match extension ("Notion Template Pack 2", 42% share cited), empty questions ("Ultimate PDF Guide 2"), empty everything ("New Digital Product"), no top_products but question present ("Content Creators Template"), and prompt embeds raw report JSON.
+    
+    No changes to core/models.py; no files outside the assignment.
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Resume this session with:
+  hermes --resume 20260804_004756_8a7c72
+
+Session:        20260804_004756_8a7c72
+Duration:       2m 35s
+Messages:       9 (1 user, 7 tool calls)

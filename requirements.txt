@@ -1,0 +1,11 @@
+# Creator Income Copilot — Python dependencies (Wave 4)
+# Versions pinned to the versions verified in the dev venv (Python 3.11).
+# Install with:  pip install -r requirements.txt
+
+fastapi==0.141.1
+uvicorn[standard]==0.52.1
+python-dotenv==1.2.2
+pydantic==2.13.4
+python-multipart==0.0.32
+pytest==9.1.1
+httpx==0.28.1

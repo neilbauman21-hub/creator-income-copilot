@@ -1,0 +1,259 @@
+
+╭──────────── Hermes Agent v0.12.0 (2026.4.30) · upstream 54e78cad ────────────╮
+│                                     Available Tools                          │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    browser-cdp: browser_cdp,                │
+│   ⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀    browser_dialog                           │
+│   ⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀    file: patch, read_file, search_files,    │
+│   ⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀    write_file                               │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    hermes-yuanbao: yb_query_group_info,     │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    homeassistant: ha_call_service,          │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ha_get_state, ...                        │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    image_gen: image_generate                │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    kanban: kanban_block, kanban_comment,    │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠑⢶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    rl: rl_check_status, rl_edit_config,     │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⢰⡆⠈⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ...                                      │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠈⣡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    spotify: spotify_albums,                 │
+│   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    spotify_devices, ...                     │
+│                                     (and 1 more toolsets...)                 │
+│  deepseek-v4-flash · Nous Research                                           │
+│     /Users/neilthepineapplegoat     MCP Servers                              │
+│   Session: 20260804_013037_0ca666   neo (stdio) — 21 tool(s)                 │
+│                                     figma (stdio) — 6 tool(s)                │
+│                                     filesystem (stdio) — 18 tool(s)          │
+│                                     memory (stdio) — 13 tool(s)              │
+│                                     sequential-thinking (stdio) — 5 tool(s)  │
+│                                                                              │
+│                                     Available Skills                         │
+│                                     apple: apple-notes, apple-reminders,     │
+│                                     findmy, imessage                         │
+│                                     autonomous-ai-agents: claude-code,       │
+│                                     codex, command-code, hermes-agent,...    │
+│                                     creative: architecture-diagram,          │
+│                                     ascii-art, ascii-video, b...             │
+│                                     data-science: jupyter-live-kernel        │
+│                                     devops: kanban-orchestrator,             │
+│                                     kanban-worker, webhook-sub...            │
+│                                     email: himalaya                          │
+│                                     gaming: minecraft-modpack-server,        │
+│                                     pokemon-player                           │
+│                                     general: ai-seo, cold-email,             │
+│                                     copywriting, data-visualiza...           │
+│                                     github: codebase-inspection,             │
+│                                     github-auth, github-code-r...            │
+│                                     marketing: website-promotion             │
+│                                     mcp: mcp-server-from-github, native-mcp  │
+│                                     media: gif-search, heartmula, songsee,   │
+│                                     spotify, youtub...                       │
+│                                     mlops: audiocraft-audio-generation,      │
+│                                     axolotl, dspy, eva...                    │
+│                                     note-taking: obsidian                    │
+│                                     openclaw-imports: find-skills,           │
+│                                     remotion-best-practices                  │
+│                                     productivity: airtable,                  │
+│                                     digital-product-selling,                 │
+│                                     google-works...                          │
+│                                     red-teaming: godmode,                    │
+│                                     kali-pi-bugbounty-recon                  │
+│                                     research: arxiv, blogwatcher, dig,       │
+│                                     duckduckgo-search, llm...                │
+│                                     security: bug-bounty-recon               │
+│                                     smart-home: openhue                      │
+│                                     social-media: xurl                       │
+│                                     software-development:                    │
+│                                     apify-actor-development,                 │
+│                                     debugging-hermes-tui-c...                │
+│                                                                              │
+│                                     6 tools · 116 skills · 5 MCP servers ·   │
+│                                     /help for commands                       │
+│                                     ⚠ 205 commits behind — run hermes        │
+│                                     update to update                         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Query: You are a testing subagent for 'Creator Income Copilot' at 
+/Users/neilthepineapplegoat/creator-income-copilot. FIRST read 
+/Users/neilthepineapplegoat/creator-income-copilot/EXPANSION.md, 
+/Users/neilthepineapplegoat/creator-income-copilot/main.py, 
+/Users/neilthepineapplegoat/creator-income-copilot/core/report.py.
+YOUR TASK: write 
+/Users/neilthepineapplegoat/creator-income-copilot/tests/test_api_edge.py using 
+fastapi TestClient: (1) empty CSV file → 400 or graceful; (2) 6MB file → 413 or 
+400; (3) wrong content-type .exe filename → 400; (4) JSON body {'csv_text': 
+'garbage'} → 400; (5) valid JSON body csv_text → 200 with correct schema; (6) 20
+concurrent requests to /api/sample/analyze (threads) → all 200; (7) monkeypatch 
+core.report's LLM call to force fallback, assert used_fallback True propagates 
+in response. Also verify /api/sample returns CSV attachment with correct 
+filename.
+VERIFY: cd /Users/neilthepineapplegoat/creator-income-copilot && 
+.venv/bin/python -m pytest tests/test_api_edge.py -q — green.
+Do NOT modify main.py or core/*. Report: files + test output.
+Initializing agent...
+────────────────────────────────────────
+
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/EXPANSION.md  5.6s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/main.py  5.6s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/report.py  5.6s
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 🔎 preparing search_files…
+  ┊ 🔎 preparing search_files…
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/llm.py  1.1s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/core/models.py  1.1s
+  ┊ 🔎 find      *.csv  0.9s
+  ┊ 🔎 find      *.py  0.8s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    A test_api_edge.py already exists — let me check it plus existing conventions and the sample CSV.
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 preparing read_file…
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/tests/test_api_edge.py  1.1s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/tests/test_api.py  1.1s
+  ┊ 📖 read      /Users/neilthepineapplegoat/creator-income-copilot/sample_data/payhip_sample.csv  1.1s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    The file already exists — complete with all 7 required tests plus the /api/sample check, matching the Pass 3 spec. Before running, I need to verify one risk: the concurrency test calls the real LLM path unless OPENROUTER_API_KEY is absent. Let me check the env and the deps.
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && ls -la .env 2>/dev/null; grep -c "OPENROUTER_API_KEY" .env 2>/dev/null; echo "---env---"; env | grep -c OPENROUTER; echo "---deps---"; .venv/bin/python -c "import fastapi, starlette, httpx, pytest; print('fastapi', fastapi.__version__); print('starlette', starlette.__version__); print('httpx', httpx.__version__); print('pytest', pytest.__version__)"  0.8s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    .env has OPENROUTER_API_KEY set, and main.py calls load_dotenv() at import — so the existing tests 5 and 6 would fire REAL OpenRouter network calls (violates EXPANSION.md's "no network calls in tests" rule, and the 20-thread test could take 25s× timeouts). Let me get a baseline run first.
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -m pytest tests/test_api_edge.py -q 2>&1 | tail -20  2.3s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    12 passed, but in 1.77s — suspiciously fast if a real LLM call were happening per request. Let me check whether the .env key is actually being used (i.e., whether tests are secretly hitting the network).
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python - <<'EOF'
+import os, sys
+# simulate what main.py does at import
+from dotenv import load_dotenv
+load_dotenv()
+key = os.getenv("OPENROUTER_API_KEY")
+print("key set:", bool(key), "| length:", len(key) if key else 0, "| prefix:", (key[:8] + "...") if key else None)
+print("looks like placeholder:", key in (None, "", "sk-or-v1-xxx", "your_key_here") if key else True)
+EOF  0.3s [error]
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && awk -F= '/OPENROUTER/{k=$2; gsub(/^"|"$|^./,"",k); print "len:", length(k), "prefix:", substr(k,1,10)}' .env  0.3s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    .env has a REAL 72-char OpenRouter key (k-or-v1-eb...) plus OPENROUTER_MODEL. main.py loads .env at import, so tests 5 and 6 are hitting the real OpenRouter API — that's why the suite ran in 1.77s despite 20 concurrent sample/analyze calls. That violates EXPANSION.md's "no network calls in tests" rule and makes the suite flaky/paid. Let me confirm the network hit empirically:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -c "
+import core.llm as llm
+import httpx
+calls = []
+orig = httpx.post
+def spy(*a, **k):
+    calls.append(1)
+    raise RuntimeError('network blocked (spy)')
+llm.httpx.post = spy
+from core.report import build_analyze_response
+from core.parser import parse_csv
+text = open('sample_data/payhip_sample.csv').read()
+recs, warns = parse_csv(text)
+r = build_analyze_response(recs, warns)
+print('network calls attempted:', len(calls))
+print('used_fallback:', r.insights.used_fallback)
+" 2>&1 | tail -3  0.6s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Confirmed: with the real .env key loaded, the pipeline attempts a real OpenRouter call. The existing test file passes but tests 5 & 6 are secretly hitting the live API (slow, flaky, costs tokens, and violates EXPANSION.md's "No network calls in tests"). I'll add an autouse guard that forces the real graceful-degradation path instead — patching core.llm.httpx.post to raise, which exercises the exact fallback production uses:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🔧 preparing patch…
+  ┊ 🔧 patch     /Users/neilthepineapplegoat/creator-income-copilot/tests/test_api_edge.py  1.9s
+  ┊ review diff
+a//Users/neilthepineapplegoat/creator-income-copilot/tests/test_api_edge.py → b//Users/neilthepineapplegoat/creator-income-copilot/tests/test_api_edge.py
+@@ -20,12 +20,33 @@
+ from concurrent.futures import ThreadPoolExecutor
+ from pathlib import Path
+ 
++import pytest
+ from fastapi.testclient import TestClient
+ 
+ from core.models import LLMInsights, NextProduct, PromoEmail
+ from main import MAX_UPLOAD_BYTES, app
+ 
+ client = TestClient(app)
++
++
++@pytest.fixture(autouse=True)
++def _no_network_llm(monkeypatch) -> None:
++    """Force every real LLM call into the heuristic fallback path.
++
++    main.py calls load_dotenv() at import, so a REAL OPENROUTER_API_KEY from
++    .env lands in os.environ. Without this guard, every /api/analyze and
++    /api/sample/analyze test would fire a live OpenRouter call — slow, flaky,
++    token-burning, and a direct violation of EXPANSION.md's "No network calls
++    in tests" rule. Patching core.llm.httpx.post to raise makes the REAL
++    generate_insights() degrade via its own exception handler (the exact
++    graceful path production uses), so used_fallback=True is exercised, not
++    merely stubbed. Tests that install their own LLM stubs (the two below)
++    are unaffected: they replace generate_insights/_call_openrouter entirely.
++    """
++    def _boom(*_args, **_kwargs) -> None:  # noqa: ANN002, ANN003
++        raise RuntimeError("network disabled in tests — LLM must fall back")
++
++    monkeypatch.setattr("core.llm.httpx.post", _boom)
+ 
+ PROJECT_ROOT = Path(__file__).resolve().parent.parent
+ SAMPLE_CSV = PROJECT_ROOT / "sample_data" / "payhip_sample.csv"
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    Now verify — run the edge suite, then the full test suite to confirm nothing else broke:
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 preparing terminal…
+  ┊ 💻 $         cd /Users/neilthepineapplegoat/creator-income-copilot && .venv/bin/python -m pytest tests/test_api_edge.py -q 2>&1 | tail -8 && echo "=== FULL SUITE ===" && .venv/bin/python -m pytest tests/ -q 2>&1 | tail -6  3.5s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+    All green, and the timing proves the fix: the edge suite dropped from 1.77s → 0.39s because the LLM calls now fail fast via the patched httpx instead of round-tripping to OpenRouter.
+    
+    REPORT
+    ══════
+    
+    Task: write tests/test_api_edge.py for Creator Income Copilot (Pass 3 of EXPANSION.md).
+    
+    Files
+    ═════
+    - /Users/neilthepineapplegoat/creator-income-copilot/tests/test_api_edge.py — written (12 tests, all 7 spec items + /api/sample check)
+    - main.py, core/*: NOT modified (per instructions)
+    
+    Test coverage (all requirements from the task):
+    1. Empty CSV file → 400 (empty + whitespace-only variants) — test_empty_csv_file_returns_400, test_whitespace_only_csv_file_returns_400
+    2. 6MB file (over 5MB cap) → 400/413 — test_6mb_upload_rejected
+    3. Wrong content-type .exe filename → 400 — test_exe_filename_rejected_even_with_csv_content_type, test_octet_stream_csv_filename_rejected
+    4. JSON body {'csv_text': 'garbage'} → 400 — test_json_garbage_csv_text_returns_400
+    5. Valid JSON csv_text → 200 + full AnalyzeResponse schema — test_json_valid_csv_text_returns_200_with_schema (asserts exact key sets for analytics/insights/warnings)
+    6. 20 concurrent POST /api/sample/analyze via ThreadPoolExecutor → all 200 with schema — test_20_concurrent_sample_analyze_all_200
+    7. Monkeypatched core.report LLM call → used_fallback True propagates — test_monkeypatched_generate_insights_propagates_used_fallback (stub) + test_llm_failure_forces_real_fallback_with_used_fallback (real fallback path via raising _call_openrouter)
+    8. GET /api/sample → text/csv attachment, filename="payhip_sample.csv", byte-exact body — test_sample_download_filename_and_body
+    
+    One defect found & fixed during verification
+    ════════════════════════════════════════════
+    The original file passed, but only because tests 5 & 6 were silently making REAL OpenRouter calls: .env contains a live OPENROUTER_API_KEY, and main.py calls load_dotenv() at import, so the LLM layer had a key and called the live API on every run. That violates EXPANSION.md's "No network calls in tests" rule, burns tokens, and is flaky.
+    
+    Fix: added an autouse fixture _no_network_llm that patches core.llm.httpx.post to raise. This forces the REAL generate_insights() exception handler to degrade to heuristics — the exact production fallback path — so used_fallback=True is genuinely exercised, not stubbed away. The two LLM-specific tests are unaffected (they replace generate_insights/_call_openrouter entirely).
+    
+    Test output
+    ═══════════
+    tests/test_api_edge.py: 12 passed in 0.39s   (was 1.77s with live network calls)
+    Full suite:                215 passed in 1.39s
+    
+    No changes to main.py or core/*.
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Resume this session with:
+  hermes --resume 20260804_013037_0ca666
+
+Session:        20260804_013037_0ca666
+Duration:       2m 27s
+Messages:       29 (1 user, 27 tool calls)

@@ -1,0 +1,36 @@
+[00:49:12] Waiting for wave1 + wave15 to finish...
+[00:52:29] wave1 + wave15 done.
+[00:52:29] Verifying wave 1 artifacts...
+total 112
+drwxr-xr-x@ 10 neilthepineapplegoat  staff    320 Aug  4 00:51 .
+drwxr-xr-x@ 21 neilthepineapplegoat  staff    672 Aug  4 00:51 ..
+-rw-r--r--@  1 neilthepineapplegoat  staff   6148 Aug  4 00:52 .DS_Store
+-rw-r--r--@  1 neilthepineapplegoat  staff      0 Aug  4 00:42 __init__.py
+drwxr-xr-x@ 10 neilthepineapplegoat  staff    320 Aug  4 00:52 __pycache__
+-rw-r--r--@  1 neilthepineapplegoat  staff   9920 Aug  4 00:51 analytics.py
+-rw-r--r--@  1 neilthepineapplegoat  staff   2633 Aug  4 00:42 models.py
+-rw-r--r--@  1 neilthepineapplegoat  staff  10294 Aug  4 00:50 parser.py
+-rw-r--r--@  1 neilthepineapplegoat  staff   5775 Aug  4 00:48 promo.py
+-rw-r--r--@  1 neilthepineapplegoat  staff  11607 Aug  4 00:50 recommender.py
+[00:52:29] Launching Wave 2a: llm.py
+[00:52:29] Waiting for wave2a llm to finish...
+[00:54:30] wave2a llm done.
+[00:54:30] Wave 2a complete.
+[00:54:30] Launching Wave 2b: report.py + main.py
+[00:54:30] Waiting for wave2b report+main to finish...
+[00:58:31] wave2b report+main done.
+[00:58:31] Wave 2b complete.
+[00:58:31] Launching Wave 3: docs + deploy
+[00:58:31] Waiting for wave3 docs+submission to finish...
+[01:00:32] wave3 docs+submission done.
+[01:00:32] Wave 3 complete.
+[01:00:32] === FINAL VERIFICATION ===
+......................................................                   [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.11/site-packages/fastapi/testclient.py:1
+  /Users/neilthepineapplegoat/creator-income-copilot/.venv/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+54 passed, 1 warning in 1.13s
+[01:00:34] All waves complete. See build_logs/ for details.
