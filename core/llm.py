@@ -38,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 # OpenRouter API endpoint and config (per SPEC).
 _OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-_DEFAULT_MODEL = "google/gemini-2.0-flash-001"
+_DEFAULT_MODEL = "google/gemini-2.5-flash-lite"
 _TIMEOUT_SECONDS = 25.0
 
 # Min/max number of heuristic insights per the SPEC ("3-6 insights").
